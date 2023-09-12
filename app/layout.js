@@ -1,7 +1,9 @@
+"use client";
 import Navbar from "@/components/Navbar";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Sidebar from "@/components/Sidebar";
+import { useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,16 +13,19 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const [toggle, setToggle] = useState(true);
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="flex items-center p-4">
-          <span className="flex flex-col">
-            <Sidebar />
-          </span>
-          <Navbar />
+        <div className="flex">
+          <div className={`bg-blue-100 h-screen ${toggle ? "w-32" : "w-10"}`}>
+            <Sidebar toggle={toggle} setToggle={setToggle} />
+          </div>
+          <div className="flex-grow relative">
+            <Navbar />
+            {children}
+          </div>
         </div>
-        {children}
       </body>
     </html>
   );
