@@ -18,10 +18,18 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <div className="flex">
-          <div className={`bg-blue-100 h-screen ${toggle ? "w-32" : "w-10"}`}>
+          <div
+            className={`bg-blue-100 h-screen relative z-30 opacity-80 ${
+              toggle ? "w-64" : "w-10"
+            }`}
+          >
             <Sidebar toggle={toggle} setToggle={setToggle} />
           </div>
-          <div className="flex-grow relative">
+          <div
+            className={`absolute ${
+              toggle ? "transform translate-x-12" : "transform translate-x-12"
+            } `}
+          >
             <Navbar />
             {children}
           </div>
