@@ -26,7 +26,7 @@ const Sidebar = ({ toggle, setToggle }) => {
       </button>
 
       {toggle && (
-        <div>
+        <div className="flex flex-col items-center">
           {SidebarMenu.map((item, index) => {
             return (
               <li key={index}>

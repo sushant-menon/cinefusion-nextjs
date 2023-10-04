@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
           </div>
           <div
             className={`absolute ${
-              toggle ? "transform translate-x-12" : "transform translate-x-12"
+              toggle ? "transform translate-x-40" : "transform translate-x-12"
             } `}
           >
             <Navbar />
@@ -38,5 +38,3 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
-
-//This is a just a test. another one. I think it is working

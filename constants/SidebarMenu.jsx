@@ -4,7 +4,7 @@ export const SidebarMenu = [
     path: "/menu1",
   },
   {
-    title: "menu 2",
+    title: "menu 2 ",
     path: "/menu2",
   },
   {
