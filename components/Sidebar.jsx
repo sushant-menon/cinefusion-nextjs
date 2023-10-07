@@ -7,7 +7,7 @@ import Link from "next/link";
 const Sidebar = ({ toggle, setToggle }) => {
   return (
     <>
-      <button onClick={() => setToggle(!toggle)}>
+      <button className="flex items-center" onClick={() => setToggle(!toggle)}>
         {toggle ? (
           <Image
             src="https://cdn.iconscout.com/icon/free/png-256/free-close-156-462132.png?f=webp&w=128"

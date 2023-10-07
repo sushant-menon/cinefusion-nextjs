@@ -17,19 +17,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="flex">
+        <div className={`flex ${toggle ? "bg-gray-300" : ""}`}>
           <div
-            className={`bg-blue-100 h-screen relative z-30 opacity-80 ${
-              toggle ? "w-64" : "w-10"
+            className={`bg-gray-500 h-screen relative z-30 opacity-80 ${
+              toggle ? "w-44" : "w-10"
             }`}
           >
             <Sidebar toggle={toggle} setToggle={setToggle} />
           </div>
-          <div
-            className={`absolute ${
-              toggle ? "transform translate-x-40" : "transform translate-x-12"
-            } `}
-          >
+          <div className={`fixed ml-10`}>
             <Navbar />
             {children}
           </div>
