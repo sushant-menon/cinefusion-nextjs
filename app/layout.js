@@ -25,8 +25,10 @@ export default function RootLayout({ children }) {
           >
             <Sidebar toggle={toggle} setToggle={setToggle} />
           </div>
-          <div className={`fixed ml-10`}>
-            <Navbar />
+          <div className={`fixed ml-16 ${toggle ? "p-16" : ""}`}>
+            <span className={`${toggle ? "hidden" : "flex"}`}>
+              <Navbar />
+            </span>
             {children}
           </div>
         </div>

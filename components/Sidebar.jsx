@@ -9,12 +9,13 @@ const Sidebar = ({ toggle, setToggle }) => {
     <>
       <button className="flex items-center" onClick={() => setToggle(!toggle)}>
         {toggle ? (
-          <Image
-            src="https://cdn.iconscout.com/icon/free/png-256/free-close-156-462132.png?f=webp&w=128"
-            alt=""
-            width={40}
-            height={37}
-          />
+          // <Image
+          //   src="https://cdn.iconscout.com/icon/free/png-256/free-close-156-462132.png?f=webp&w=128"
+          //   alt=""
+          //   width={40}
+          //   height={37}
+          // />
+          <div className="text-2xl font-extrabold ml-4">CINEFUSION</div>
         ) : (
           <Image
             src="https://cdn.iconscout.com/icon/free/png-256/free-hamburger-menu-462145.png?f=webp"
