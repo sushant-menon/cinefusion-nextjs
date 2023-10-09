@@ -5,6 +5,7 @@ const nextConfig = {
       "cdn.iconscout.com",
       "png.pngtree.com",
       "cdn-icons-png.flaticon.com",
+      "image.tmdb.org",
     ],
   },
 };
