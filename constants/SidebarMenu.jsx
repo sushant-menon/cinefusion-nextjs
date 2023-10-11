@@ -1,10 +1,14 @@
 export const SidebarMenu = [
   {
-    title: "Movies",
-    path: "/Movies",
+    title: "Home",
+    path: "/movies",
   },
   {
-    title: "menu 2 ",
+    title: "Movies",
+    path: "/movies",
+  },
+  {
+    title: "TV Shows",
     path: "/menu2",
   },
   {

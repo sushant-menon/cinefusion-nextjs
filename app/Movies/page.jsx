@@ -2,7 +2,7 @@
 import MovieList from "@/components/MovieList";
 import React from "react";
 
-const Movies = () => {
+const movies = () => {
   return (
     <div>
       <MovieList />
@@ -10,4 +10,4 @@ const Movies = () => {
   );
 };
 
-export default Movies;
+export default movies;

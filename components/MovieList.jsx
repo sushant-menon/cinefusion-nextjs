@@ -19,10 +19,11 @@ const MovieList = () => {
   return (
     <>
       <div className="w-full mx-auto">
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap gap-2">
           {movie.map(movieItem => {
             return (
               <Image
+                className="rounded-xl"
                 key={movieItem.id}
                 width={300}
                 height={250}
