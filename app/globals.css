@@ -22,11 +22,6 @@
   scrollbar-width: thin;
 }
 
-.scrollbar-thumb {
-  background-color: #ff0000;
-  border-radius: 6px;
-}
-
 .scrollbar-track {
   background: #1a202c;
 }

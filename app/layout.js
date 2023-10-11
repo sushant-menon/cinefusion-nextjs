@@ -32,15 +32,18 @@ export default function RootLayout({ children }) {
             {children}
           </div>
         </div> */}
-        <div className={`container max-w-max`}>
+        <div className={`container max-w-max relative`}>
+          {toggle && (
+            <div className="bg-gray-400 h-screen w-full fixed z-30 opacity-80"></div>
+          )}
           <div
-            className={`bg-gray-700 h-screen fixed ${
-              toggle ? "w-52" : "w16"
-            } z-30 opacity-80`}
+            className={`bg-gray-600 h-screen fixed ${
+              toggle ? "w-52" : "w-16"
+            } z-40 opacity-100`}
           >
             <Sidebar toggle={toggle} setToggle={setToggle} />
           </div>
-          <div className="ml-16 w-full">
+          <div className={`ml-16 w-full z-10`}>
             <Navbar />
             <span> {children}</span>
           </div>

@@ -1,9 +1,5 @@
 export const SidebarMenu = [
   {
-    title: "Home",
-    path: "/movies",
-  },
-  {
     title: "Movies",
     path: "/movies",
   },
