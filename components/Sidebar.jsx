@@ -3,8 +3,16 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { SidebarMenu } from "../constants/SidebarMenu";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { toggleSidebar } from "@/utils/AppSlice";
 
 const Sidebar = ({ toggle, setToggle }) => {
+  // const dispatch = useDispatch();
+
+  const toggleSidebarMenu = () => {
+    dispatch(toggleSidebar());
+  };
+
   return (
     <>
       <button className="flex items-center" onClick={() => setToggle(!toggle)}>
