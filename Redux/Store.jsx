@@ -1,5 +1,6 @@
+import AppSlice from "./features/AppSlice";
+
 const { configureStore } = require("@reduxjs/toolkit");
-const { default: AppSlice } = require("./AppSlice");
 
 const store = configureStore({
   reducer: {
