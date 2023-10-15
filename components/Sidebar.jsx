@@ -10,7 +10,7 @@ const Sidebar = ({ toggle, setToggle }) => {
   return (
     <>
       <button
-        className="flex items-center"
+        className="flex items-center mx-auto"
         onClick={() => {
           setToggle(!toggle);
         }}

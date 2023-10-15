@@ -18,10 +18,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   const [toggle, setToggle] = useState(true);
-  // const dispatch = useDispatch();
-  // const toggleSidebarMenu = () => {
-  //   dispatch(toggleSidebar());
-  // };
+
   return (
     <html lang="en">
       <body className={inter.className}>
