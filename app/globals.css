@@ -28,6 +28,6 @@
 
 @layer base {
   body {
-    @apply overflow-x-hidden;
+    @apply overflow-x-hidden bg-gray-800;
   }
 }
