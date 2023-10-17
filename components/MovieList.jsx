@@ -4,11 +4,7 @@ import React, { useEffect, useState } from "react";
 
 const MovieList = () => {
   const [movie, setMovie] = useState([]);
-  const [toggle, setToggle] = useState("false");
-
-  const changeState = () => {
-    setToggle(toggle === "true" ? "false" : "true");
-  };
+  const [toggle, setToggle] = useState(false);
 
   const movieList = async () => {
     const data = await fetch(
@@ -26,13 +22,12 @@ const MovieList = () => {
   return (
     <>
       <button
-        onClick={changeState}
-        className="text-2xl text-white mb-4 border p-1 group relative"
+        onClick={() => setToggle(!toggle)}
+        className="text-2xl text-white mb-4 border p-1 "
       >
         {toggle}
       </button>
-      <div className="hidden absolute">Hello</div>
-      <div className=" absolute hidden">hello</div>
+      {toggle && <div className="">PANEL</div>}
       <div className="mx-auto">
         <div className="flex flex-wrap gap-2">
           {movie.map(item => {
