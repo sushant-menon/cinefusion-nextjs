@@ -1,6 +1,28 @@
 "use client";
+import { MovieCategoryList } from "@/constants/MovieCategoryList";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import { CaretDown, CaretRight } from "phosphor-react";
+
+const UpTriangle = ({ size }) => {
+  const borderStyle = "1px solid rgb(209,213,219) ";
+  return (
+    <div
+      style={{
+        position: "absolute",
+        top: "-6px",
+        left: "15px",
+        width: `${size}px`,
+        height: `${size}px`,
+        transform: `rotate(45deg)`,
+        backgroundColor: "white",
+        borderLeft: borderStyle,
+        borderTop: borderStyle,
+      }}
+    ></div>
+  );
+};
 
 const MovieList = () => {
   const [movie, setMovie] = useState([]);
@@ -21,13 +43,33 @@ const MovieList = () => {
 
   return (
     <>
-      <button
-        onClick={() => setToggle(!toggle)}
-        className="text-2xl text-white mb-4 border p-1 "
-      >
-        {toggle}
-      </button>
-      {toggle && <div className="">PANEL</div>}
+      <div className="relative">
+        <button
+          onClick={() => setToggle(!toggle)}
+          className="text-2xl mb-4 border py-1 rounded text-white px-2 hover:bg-gray-400 bg-gray-500"
+        >
+          Movie Category
+        </button>
+        {toggle && (
+          <div
+            className="absolute bg-white rounded border p-3 text-lg z-10 w-64"
+            style={{ top: "100%", left: "" }}
+          >
+            <UpTriangle size={10} />
+            <ul>
+              {MovieCategoryList.map(item => (
+                <li
+                  className="hover:bg-blue-500 rounded hover:text-white p-2 cursor-pointer"
+                  key={item.title}
+                >
+                  <Link href={item.path}>{item.title}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+
       <div className="mx-auto">
         <div className="flex flex-wrap gap-2">
           {movie.map(item => {
