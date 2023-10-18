@@ -31,3 +31,8 @@
     @apply overflow-x-hidden bg-gray-800;
   }
 }
+
+.selected {
+  background-color: blue;
+  color: white;
+}

@@ -16,7 +16,7 @@ const UpTriangle = ({ size }) => {
         width: `${size}px`,
         height: `${size}px`,
         transform: `rotate(45deg)`,
-        backgroundColor: "white",
+        backgroundColor: "black",
         borderLeft: borderStyle,
         borderTop: borderStyle,
       }}
@@ -42,23 +42,30 @@ const UpcomingMovies = () => {
 
   return (
     <>
+      <div className="text-white text-5xl font-semibold mb-4">
+        Upcoming Movies
+      </div>
       <div className="relative">
         <button
           onClick={() => setToggle(!toggle)}
           className="text-2xl mb-4 border py-1 rounded text-white px-2 hover:bg-gray-400 bg-gray-500"
         >
-          Movie Category
+          Select Category
         </button>
         {toggle && (
           <div
-            className="absolute bg-white rounded border p-3 text-lg z-10 w-64"
+            className="absolute bg-black text-white rounded-xl border p-3 text-lg z-10 w-72"
             style={{ top: "100%", left: "" }}
           >
             <UpTriangle size={10} />
             <ul>
               {MovieCategoryList.map(item => (
                 <li
-                  className="hover:bg-blue-500 rounded hover:text-white p-2 cursor-pointer"
+                  className={`p-2 cursor-pointer ${
+                    item.title === "Upcoming Movies"
+                      ? "bg-blue-400 text-gray-900 font-bold"
+                      : "hover:bg-blue-500 hover:text-white"
+                  } rounded`}
                   key={item.title}
                 >
                   <Link href={item.path}>{item.title}</Link>
