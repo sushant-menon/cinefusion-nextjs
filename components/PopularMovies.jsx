@@ -45,6 +45,7 @@ const PopularMovies = () => {
       <div className="text-white text-5xl font-semibold mb-4">
         Popular Movies
       </div>
+
       <div className="relative">
         <button
           onClick={() => setToggle(!toggle)}
@@ -75,7 +76,6 @@ const PopularMovies = () => {
           </div>
         )}
       </div>
-
       <div className="w-full mx-auto">
         <div className="flex flex-wrap gap-2">
           {popularMoviesList.map(item => {

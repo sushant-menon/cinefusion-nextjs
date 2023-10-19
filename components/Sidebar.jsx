@@ -3,8 +3,6 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { SidebarMenu } from "../constants/SidebarMenu";
 import Link from "next/link";
-import { useDispatch } from "react-redux";
-import { toggleSidebar } from "@/Redux/features/AppSlice";
 
 const Sidebar = ({ toggle, setToggle }) => {
   return (

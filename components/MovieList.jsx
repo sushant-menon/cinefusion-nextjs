@@ -3,7 +3,6 @@ import { MovieCategoryList } from "@/constants/MovieCategoryList";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { CaretDown, CaretRight } from "phosphor-react";
 
 const UpTriangle = ({ size }) => {
   const borderStyle = "1px solid rgb(209,213,219) ";
@@ -109,3 +108,79 @@ const MovieCard = ({ item }) => {
 };
 
 export default MovieList;
+
+// Another one
+
+// "use client";
+// import { useEffect, useState } from "react";
+// import { useRouter } from "next/navigation";
+// import { MovieCategoryList } from "@/constants/MovieCategoryList";
+
+// import Link from "next/link";
+
+// const MovieList = () => {
+//   const [movies, setMovies] = useState([]);
+//   const [toggle, setToggle] = useState(false);
+//   const router = useRouter();
+//   const { category } = router.query;
+
+//   const movieList = async category => {
+//     if (!category) {
+//       return;
+//     }
+
+//     const data = await fetch(
+//       `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.NEXT_PUBLIC_MOVIE_API_KEY}&with_genres=${category}`
+//     );
+//     const json = await data.json();
+//     setMovies(json.results);
+//     console.log(json.results);
+//   };
+
+//   useEffect(() => {
+//     if (category) {
+//       movieList(category);
+//     }
+//   }, [category]);
+
+//   return (
+//     <>
+//       <div className="text-white text-5xl font-semibold mb-4">Movies</div>
+//       <div className="relative">
+//         <button
+//           onClick={() => setToggle(!toggle)}
+//           className="text-2xl mb-4 border py-1 rounded text-white px-2 hover:bg-gray-400 bg-gray-500"
+//         >
+//           Select Category
+//         </button>
+
+//         {toggle && (
+//           <div className="absolute bg-black text-white rounded-xl border p-3 text-lg z-10 w-72">
+//             <UpTriangle size={10} />
+//             <ul>
+//               {MovieCategoryList.map(item => (
+//                 <CategoryLink
+//                   title={item.title}
+//                   path={item.path}
+//                   key={item.title}
+//                 />
+//               ))}
+//             </ul>
+//           </div>
+//         )}
+//       </div>
+//     </>
+//   );
+// };
+
+// const CategoryLink = ({ title, path }) => {
+//   return (
+//     <li className={`p-2 cursor-pointer rounded`}>
+//       <Link href={path}>
+//         <a>{title}</a>
+//       </Link>
+//     </li>
+//   );
+// };
+
+// export default MovieList;
