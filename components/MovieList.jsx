@@ -1,4 +1,3 @@
-"use client";
 import { MovieCategoryList } from "@/constants/MovieCategoryList";
 import Image from "next/image";
 import Link from "next/link";
@@ -26,6 +25,7 @@ const UpTriangle = ({ size }) => {
 const MovieList = () => {
   const [movie, setMovie] = useState([]);
   const [toggle, setToggle] = useState(false);
+  const [selectedMovie, setSelectedMovie] = useState([]);
 
   const movieList = async () => {
     const data = await fetch(
@@ -33,12 +33,26 @@ const MovieList = () => {
     );
     const json = await data.json();
     setMovie(json.results);
-    console.log(json.results);
+    //console.log(json.results);
   };
 
   useEffect(() => {
     movieList();
   }, []);
+
+  const fetchMovie = async id => {
+    const data = await fetch(
+      `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.NEXT_PUBLIC_MOVIE_API_KEY}`
+    );
+    const json = await data.json();
+    console.log(json);
+    setSelectedMovie(json);
+  };
+
+  const selectMovie = async item => {
+    fetchMovie(item.id);
+    setSelectedMovie(item);
+  };
 
   return (
     <>
@@ -59,7 +73,7 @@ const MovieList = () => {
             <ul>
               {MovieCategoryList.map(item => (
                 <li
-                  className={`p-2 cursor-pointer ${
+                  className={`p-2 ${
                     item.title === "Home"
                       ? "bg-blue-400 text-gray-900 font-bold"
                       : "hover:bg-blue-500 hover:text-white"
@@ -77,7 +91,9 @@ const MovieList = () => {
       <div className="mx-auto">
         <div className="flex flex-wrap gap-2">
           {movie.map(item => {
-            return <MovieCard item={item} key={item.id} />;
+            return (
+              <MovieCard item={item} key={item.id} selectMovie={selectMovie} />
+            );
           })}
         </div>
       </div>
@@ -85,15 +101,18 @@ const MovieList = () => {
   );
 };
 
-const MovieCard = ({ item }) => {
+const MovieCard = ({ item, selectMovie }) => {
   return (
     <>
-      <div className="relative group cursor-pointer">
+      <div
+        onClick={() => selectMovie(item)}
+        className="relative group cursor-pointer"
+      >
         <Image
-          className=" rounded-3xl"
+          className="rounded-3xl"
           src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
           width={300}
-          height={250}
+          height={300}
           alt={item.title}
         />
         <div className="absolute inset-0 hidden group-hover:flex group-hover:items-end group-hover:justify-center bg-white/75 bg-opacity-50 text-black text-base font-bold text-center p-4 group-hover:rounded-2xl">
@@ -108,79 +127,3 @@ const MovieCard = ({ item }) => {
 };
 
 export default MovieList;
-
-// Another one
-
-// "use client";
-// import { useEffect, useState } from "react";
-// import { useRouter } from "next/navigation";
-// import { MovieCategoryList } from "@/constants/MovieCategoryList";
-
-// import Link from "next/link";
-
-// const MovieList = () => {
-//   const [movies, setMovies] = useState([]);
-//   const [toggle, setToggle] = useState(false);
-//   const router = useRouter();
-//   const { category } = router.query;
-
-//   const movieList = async category => {
-//     if (!category) {
-//       return;
-//     }
-
-//     const data = await fetch(
-//       `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.NEXT_PUBLIC_MOVIE_API_KEY}&with_genres=${category}`
-//     );
-//     const json = await data.json();
-//     setMovies(json.results);
-//     console.log(json.results);
-//   };
-
-//   useEffect(() => {
-//     if (category) {
-//       movieList(category);
-//     }
-//   }, [category]);
-
-//   return (
-//     <>
-//       <div className="text-white text-5xl font-semibold mb-4">Movies</div>
-//       <div className="relative">
-//         <button
-//           onClick={() => setToggle(!toggle)}
-//           className="text-2xl mb-4 border py-1 rounded text-white px-2 hover:bg-gray-400 bg-gray-500"
-//         >
-//           Select Category
-//         </button>
-
-//         {toggle && (
-//           <div className="absolute bg-black text-white rounded-xl border p-3 text-lg z-10 w-72">
-//             <UpTriangle size={10} />
-//             <ul>
-//               {MovieCategoryList.map(item => (
-//                 <CategoryLink
-//                   title={item.title}
-//                   path={item.path}
-//                   key={item.title}
-//                 />
-//               ))}
-//             </ul>
-//           </div>
-//         )}
-//       </div>
-//     </>
-//   );
-// };
-
-// const CategoryLink = ({ title, path }) => {
-//   return (
-//     <li className={`p-2 cursor-pointer rounded`}>
-//       <Link href={path}>
-//         <a>{title}</a>
-//       </Link>
-//     </li>
-//   );
-// };
-
-// export default MovieList;

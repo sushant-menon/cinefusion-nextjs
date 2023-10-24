@@ -12,4 +12,8 @@ export const SidebarMenu = [
     title: "menu 3",
     path: "/menu3",
   },
+  {
+    title: "Trial",
+    path: "/trial",
+  },
 ];
