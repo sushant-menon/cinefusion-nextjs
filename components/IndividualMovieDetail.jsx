@@ -1,6 +1,7 @@
 import React from "react";
 
-const IndividualMovieDetail = () => {
+const IndividualMovieDetail = ({ item }) => {
+  console.log(item);
   return <div>IndividualMovieDetail</div>;
 };
 

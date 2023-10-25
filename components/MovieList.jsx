@@ -2,6 +2,7 @@ import { MovieCategoryList } from "@/constants/MovieCategoryList";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import IndividualMovieDetail from "./IndividualMovieDetail";
 
 const UpTriangle = ({ size }) => {
   const borderStyle = "1px solid rgb(209,213,219) ";
@@ -104,24 +105,26 @@ const MovieList = () => {
 const MovieCard = ({ item, selectMovie }) => {
   return (
     <>
-      <div
-        onClick={() => selectMovie(item)}
-        className="relative group cursor-pointer"
-      >
-        <Image
-          className="rounded-3xl"
-          src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
-          width={300}
-          height={300}
-          alt={item.title}
-        />
-        <div className="absolute inset-0 hidden group-hover:flex group-hover:items-end group-hover:justify-center bg-white/75 bg-opacity-50 text-black text-base font-bold text-center p-4 group-hover:rounded-2xl">
-          <div className="flex flex-col h-full justify-around ">
-            <span className="text-3xl">{item.original_title}</span>
-            <span className="line-clamp-6">{item.overview}</span>
+      <Link href={`/movies/${item.id}`}>
+        <div
+          onClick={() => <IndividualMovieDetail item={item} />}
+          className="relative group cursor-pointer"
+        >
+          <Image
+            className="rounded-3xl"
+            src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+            width={300}
+            height={300}
+            alt={item.title}
+          />
+          <div className="absolute inset-0 hidden group-hover:flex group-hover:items-end group-hover:justify-center bg-white/75 bg-opacity-50 text-black text-base font-bold text-center p-4 group-hover:rounded-2xl">
+            <div className="flex flex-col h-full justify-around ">
+              <span className="text-3xl">{item.original_title}</span>
+              <span className="line-clamp-6">{item.overview}</span>
+            </div>
           </div>
         </div>
-      </div>
+      </Link>
     </>
   );
 };
