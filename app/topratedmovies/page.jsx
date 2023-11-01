@@ -1,5 +1,5 @@
 "use client";
-import TopRatedMovies from "@/components/TopRatedMovies";
+import TopRatedMovies from "@/components/movie/TopRatedMovies";
 import React from "react";
 
 const topRatedMovies = () => {

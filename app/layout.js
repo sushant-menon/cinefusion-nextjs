@@ -1,12 +1,11 @@
 "use client";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/navbar/Navbar";
 import "./globals.css";
 import { Inter } from "next/font/google";
-import Sidebar from "@/components/Sidebar";
-import { useState } from "react";
+import Sidebar from "@/components/sidebar/Sidebar";
 import { Provider } from "react-redux";
 import store from "@/Redux/Store";
-import { toggleSidebar } from "@/Redux/features/AppSlice";
+import { toggleSidebar } from "@/Redux/features/Appslice";
 import { useDispatch } from "react-redux";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -17,30 +16,25 @@ const inter = Inter({ subsets: ["latin"] });
 // };
 
 export default function RootLayout({ children }) {
-  const [toggle, setToggle] = useState(true);
-
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Provider store={store}>
-          <div className={`container max-w-max relative`}>
-            {toggle && (
+      <Provider store={store}>
+        <body className={inter.className}>
+          <div className={``}>
+            {/* {toggle && (
               <div className="bg-gray-400 h-screen w-full fixed z-30 opacity-80"></div>
-            )}
-            <div
-              className={`bg-gray-600 h-screen fixed ${
-                toggle ? "w-52" : "w-16"
-              } z-40 opacity-80`}
-            >
-              <Sidebar toggle={toggle} setToggle={setToggle} />
-            </div>
-            <div className={`ml-16 w-full z-10`}>
-              <Navbar />
-              <span>{children}</span>
+            )} */}
+
+            <Navbar />
+            <div className="flex">
+              <div className="absolute z-30 opacity-80">
+                <Sidebar />
+              </div>
+              <div className="px-32">{children}</div>
             </div>
           </div>
-        </Provider>
-      </body>
+        </body>
+      </Provider>
     </html>
   );
 }

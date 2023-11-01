@@ -1,7 +1,7 @@
 "use client";
-import MovieList from "@/components/MovieList";
-import TopratedMovies from "@/components/TopRatedMovies";
-import UpcomingMovies from "@/components/UpcomingMovies";
+import MovieList from "@/components/movie/MovieList";
+import TopratedMovies from "@/components/movie/TopRatedMovies";
+import UpcomingMovies from "@/components/movie/UpcomingMovies";
 import React from "react";
 
 const upComingMovies = () => {

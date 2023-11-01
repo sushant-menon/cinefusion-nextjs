@@ -2,7 +2,7 @@ import { MovieCategoryList } from "@/constants/MovieCategoryList";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import IndividualMovieDetail from "./IndividualMovieDetail";
+import IndividualMovieDetail from "../IndividualMovieDetail";
 
 const UpTriangle = ({ size }) => {
   const borderStyle = "1px solid rgb(209,213,219) ";
@@ -90,7 +90,7 @@ const MovieList = () => {
       </div>
 
       <div className="mx-auto">
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-4">
           {movie.map(item => {
             return (
               <MovieCard item={item} key={item.id} selectMovie={selectMovie} />
