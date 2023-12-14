@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React, { useState } from "react";
+import { X } from "phosphor-react";
 
 const MovieDetails = ({ data }) => {
   console.log(data);
@@ -15,7 +16,7 @@ const MovieDetails = ({ data }) => {
       const youtubeVideoId = trailer.key;
       return (
         <iframe
-          className=" w-[1350px] h-[702px] transform translate-y-48 -translate-x-8"
+          className=" w-[1350px] h-[718px] transform translate-y-48 -translate-x-8"
           src={`https://www.youtube.com/embed/${youtubeVideoId}`}
           title="YouTube video player"
           frameBorder="0"
@@ -57,11 +58,17 @@ const MovieDetails = ({ data }) => {
           {showTrailer ? renderMovieTrailer() : null}
           <button
             onClick={handleWatchTrailer}
-            className="border border-green-200 px-7 w-64 py-6 text-white mt-3 font-extrabold text-2xl"
+            className="border border-green-200 px-7 w-64 py-4 text-white mt-3 font-extrabold text-2xl"
           >
             Watch Trailer
           </button>
         </div>
+        <X
+          size={38}
+          className="absolute top-0 right-0 m-5 px-2 bg-blue-500 text-white cursor-pointer rounded-full"
+        >
+          Hello
+        </X>
       </div>
     </>
   );
