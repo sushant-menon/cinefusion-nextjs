@@ -1,8 +1,9 @@
+import { closeSidebar } from "@/Redux/features/Appslice";
 import { MovieCategoryList } from "@/constants/MovieCategoryList";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import IndividualMovieDetail from "../IndividualMovieDetail";
+import { useDispatch } from "react-redux";
 
 const UpTriangle = ({ size }) => {
   const borderStyle = "1px solid rgb(209,213,219) ";
@@ -28,9 +29,11 @@ const MovieList = () => {
   const [toggle, setToggle] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState([]);
 
+  const dispatch = useDispatch();
+
   const movieList = async () => {
     const data = await fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.NEXT_PUBLIC_MOVIE_API_KEY}`
+      `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.NEXT_PUBLIC_MOVIE_API_KEY}&page=2`
     );
     const json = await data.json();
     setMovie(json.results);
@@ -39,21 +42,22 @@ const MovieList = () => {
 
   useEffect(() => {
     movieList();
+    dispatch(closeSidebar());
   }, []);
 
-  const fetchMovie = async id => {
-    const data = await fetch(
-      `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.NEXT_PUBLIC_MOVIE_API_KEY}`
-    );
-    const json = await data.json();
-    console.log(json);
-    setSelectedMovie(json);
-  };
+  // const fetchMovie = async id => {
+  //   const data = await fetch(
+  //     `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.NEXT_PUBLIC_MOVIE_API_KEY}`
+  //   );
+  //   const json = await data.json();
+  //   console.log(json);
+  //   setSelectedMovie(json);
+  // };
 
-  const selectMovie = async item => {
-    fetchMovie(item.id);
-    setSelectedMovie(item);
-  };
+  // const selectMovie = async item => {
+  //   fetchMovie(item.id);
+  //   setSelectedMovie(item);
+  // };
 
   return (
     <>
@@ -93,7 +97,12 @@ const MovieList = () => {
         <div className="flex flex-wrap gap-4">
           {movie.map(item => {
             return (
-              <MovieCard item={item} key={item.id} selectMovie={selectMovie} />
+              <MovieCard
+                item={item}
+                key={item.id}
+                href={`/movies/${item.id}`}
+              />
+              // selectMovie={selectMovie}
             );
           })}
         </div>
@@ -106,10 +115,7 @@ const MovieCard = ({ item, selectMovie }) => {
   return (
     <>
       <Link href={`/movies/${item.id}`}>
-        <div
-          onClick={() => <IndividualMovieDetail item={item} />}
-          className="relative group cursor-pointer"
-        >
+        <div className="relative group cursor-pointer">
           <Image
             className="rounded-3xl"
             src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
@@ -128,5 +134,4 @@ const MovieCard = ({ item, selectMovie }) => {
     </>
   );
 };
-
 export default MovieList;
