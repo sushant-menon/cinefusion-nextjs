@@ -67,13 +67,12 @@ const MovieDetails = ({ data }) => {
           </button>
         </div>
         {showTrailer ? (
-          <X
+          <button
             onClick={handleCancel}
-            size={38}
-            className="absolute top-0 right-0 m-5 px-2 bg-blue-500 text-white cursor-pointer rounded-full"
+            className="absolute top-0 right-0 m-4 px-2 py-2 bg-yellow-500 font-bold text-white cursor-pointer"
           >
-            Hello
-          </X>
+            Close
+          </button>
         ) : null}
       </div>
     </>
