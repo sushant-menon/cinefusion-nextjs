@@ -6,6 +6,11 @@ const MovieDetails = ({ data }) => {
   console.log(data);
 
   const [showTrailer, setShowTrailer] = useState(false);
+  //const [handleCancelTrailer, setHandleCancelTrailer] = useState("");
+
+  const handleCancel = () => {
+    setShowTrailer(!showTrailer);
+  };
 
   const renderMovieTrailer = () => {
     const trailer = data.videos.results.find(
@@ -28,7 +33,7 @@ const MovieDetails = ({ data }) => {
       const key = data.videos.results[0].key;
       return (
         <iframe
-          className=" w-[1350px] h-[702px] transform translate-y-48 -translate-x-8"
+          className=" w-[1350px] h-[718px] transform translate-y-48 -translate-x-8"
           src={`https://www.youtube.com/embed/${key}`}
           title="YouTube video player"
           frameBorder="0"
@@ -46,11 +51,9 @@ const MovieDetails = ({ data }) => {
   return (
     <>
       <div className="relative">
-        <Image
-          className="w-[1350px] h-[700px] object-fill"
+        <img
+          className="w-[1350px] h-[700px] object-cover"
           src={`https://image.tmdb.org/t/p/w500${data.backdrop_path}`}
-          width={300}
-          height={500}
           alt={data.title}
         />
         <div className="absolute bottom-0 mb-24 ml-8">
@@ -63,12 +66,15 @@ const MovieDetails = ({ data }) => {
             Watch Trailer
           </button>
         </div>
-        <X
-          size={38}
-          className="absolute top-0 right-0 m-5 px-2 bg-blue-500 text-white cursor-pointer rounded-full"
-        >
-          Hello
-        </X>
+        {showTrailer ? (
+          <X
+            onClick={handleCancel}
+            size={38}
+            className="absolute top-0 right-0 m-5 px-2 bg-blue-500 text-white cursor-pointer rounded-full"
+          >
+            Hello
+          </X>
+        ) : null}
       </div>
     </>
   );
