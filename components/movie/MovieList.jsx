@@ -33,7 +33,7 @@ const MovieList = () => {
 
   const movieList = async () => {
     const data = await fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.NEXT_PUBLIC_MOVIE_API_KEY}&page=2`
+      `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.NEXT_PUBLIC_MOVIE_API_KEY}&page=1`
     );
     const json = await data.json();
     setMovie(json.results);

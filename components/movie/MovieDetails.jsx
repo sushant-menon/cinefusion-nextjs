@@ -1,12 +1,10 @@
-import Image from "next/image";
 import React, { useState } from "react";
-import { X } from "phosphor-react";
 
 const MovieDetails = ({ data }) => {
   console.log(data);
+  const { title, backdrop_path, videos, genres } = data;
 
   const [showTrailer, setShowTrailer] = useState(false);
-  //const [handleCancelTrailer, setHandleCancelTrailer] = useState("");
 
   const handleCancel = () => {
     setShowTrailer(!showTrailer);
@@ -53,15 +51,15 @@ const MovieDetails = ({ data }) => {
       <div className="relative">
         <img
           className="w-[1350px] h-[700px] object-cover"
-          src={`https://image.tmdb.org/t/p/w500${data.backdrop_path}`}
+          src={`https://image.tmdb.org/t/p/w500${backdrop_path}`}
           alt={data.title}
         />
-        <div className="absolute bottom-0 mb-24 ml-8">
-          <h2 className="text-5xl font-extrabold text-white">{data.title}</h2>
+        <div className="absolute bottom-0 mb-20 ml-8">
+          <h2 className="text-5xl font-extrabold text-white">{title}</h2>
           {showTrailer ? renderMovieTrailer() : null}
           <button
             onClick={handleWatchTrailer}
-            className="border border-green-200 px-7 w-64 py-4 text-white mt-3 font-extrabold text-2xl"
+            className="border border-green-200 px-5 w-64 py-4 rounded-lg bg-red-800 hover:bg-red-600 text-white mt-8 font-extrabold text-xl"
           >
             Watch Trailer
           </button>
@@ -74,6 +72,21 @@ const MovieDetails = ({ data }) => {
             Close
           </button>
         ) : null}
+      </div>
+      <div className="flex mt-4 items-center">
+        <h3 className="text-lg mr-2 text-blue-700 font-bold">Genres :</h3>
+        <span className="flex gap-2">
+          {genres.map(genre => {
+            return (
+              <p
+                className="border border-green-400 px-4 py-2 text-white bg-green-900 rounded-md"
+                key={genre.id}
+              >
+                {genre.name}
+              </p>
+            );
+          })}
+        </span>
       </div>
     </>
   );
