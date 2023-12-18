@@ -89,21 +89,25 @@ const UpcomingMovies = () => {
 
 const UpcomingMovieShowCard = ({ item }) => {
   return (
-    <div className="relative group cursor-pointer">
-      <Image
-        className="rounded-2xl"
-        src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
-        width={300}
-        height={250}
-        alt={item.overview}
-      />
-      <div className="absolute inset-0 hidden group-hover:flex group-hover:items-end group-hover:justify-center bg-white/75 bg-opacity-50 text-black text-base font-bold text-center p-4 group-hover:rounded-2xl">
-        <div className="flex flex-col h-full justify-around ">
-          <span className="text-3xl">{item.original_title}</span>
-          <span className="l line-clamp-6">{item?.overview}</span>
+    <>
+      <Link href={`/movies/${item.id}`}>
+        <div className="relative group cursor-pointer">
+          <Image
+            className="rounded-2xl"
+            src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+            width={300}
+            height={250}
+            alt={item.overview}
+          />
+          <div className="absolute inset-0 hidden group-hover:flex group-hover:items-end group-hover:justify-center bg-white/75 bg-opacity-50 text-black text-base font-bold text-center p-4 group-hover:rounded-2xl">
+            <div className="flex flex-col h-full justify-around ">
+              <span className="text-3xl">{item.original_title}</span>
+              <span className="l line-clamp-6">{item?.overview}</span>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      </Link>
+    </>
   );
 };
 
