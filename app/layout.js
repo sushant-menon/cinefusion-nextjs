@@ -4,8 +4,8 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import Sidebar from "@/components/sidebar/Sidebar";
 import { Provider } from "react-redux";
-import store from "@/Redux/Store";
-import { toggleSidebar } from "@/Redux/features/Appslice";
+import store from "@/redux/store";
+import { toggleSidebar } from "@/redux/features/appslice";
 import { useDispatch } from "react-redux";
 
 const inter = Inter({ subsets: ["latin"] });

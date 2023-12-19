@@ -1,4 +1,4 @@
-import { closeSidebar } from "@/Redux/features/Appslice";
+import { closeSidebar } from "@/redux/features/appslice";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
@@ -135,7 +135,7 @@ const MovieDetails = ({ data }) => {
         </div>
       </div>
       <div className="mt-3 text-center w-[1350px]">
-        <p className="line-clamp-1">{overview}</p>
+        <p className="line-clamp-1 text-lg">{overview}</p>
       </div>
       <div>
         <CreditSection credits={credits} />
@@ -146,7 +146,7 @@ const MovieDetails = ({ data }) => {
 
 const CreditSection = ({ credits }) => {
   const { crew, cast } = credits;
-  console.log(crew);
+  console.log(crew, cast);
   return (
     <div className="flex flex-wrap">
       {crew.map(crew => {

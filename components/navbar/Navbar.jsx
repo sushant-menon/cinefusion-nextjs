@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { toggleSidebar } from "@/Redux/features/Appslice";
+import { toggleSidebar } from "@/redux/features/appslice";
 import { useDispatch } from "react-redux";
 
 const Navbar = ({ toggle }) => {
