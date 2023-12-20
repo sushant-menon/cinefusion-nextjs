@@ -1,4 +1,5 @@
 import { closeSidebar } from "@/redux/features/appslice";
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
@@ -7,7 +8,6 @@ const MovieDetails = ({ data }) => {
   const {
     title,
     backdrop_path,
-    videos,
     genres,
     vote_average,
     status,
@@ -41,7 +41,7 @@ const MovieDetails = ({ data }) => {
       const youtubeVideoId = trailer.key;
       return (
         <iframe
-          className="w-[1350px] h-[718px] transform translate-y-48 -translate-x-8"
+          className="w-[1350px] h-[737px] transform translate-y-48 -translate-x-8"
           src={`https://www.youtube.com/embed/${youtubeVideoId}`}
           title="YouTube video player"
           frameBorder="0"
@@ -72,8 +72,8 @@ const MovieDetails = ({ data }) => {
     <>
       <div className="relative">
         <img
-          className="w-[1350px] h-[700px] object-cover"
-          src={`https://image.tmdb.org/t/p/w500${backdrop_path}`}
+          className="w-[1350px] h-[718px]"
+          src={`https://image.tmdb.org/t/p/w1280${backdrop_path}`}
           alt={data.title}
         />
         <div className="absolute bottom-0 mb-20 ml-8">
@@ -81,22 +81,23 @@ const MovieDetails = ({ data }) => {
           {showTrailer ? renderMovieTrailer() : null}
           <button
             onClick={handleWatchTrailer}
-            className="border border-green-200 px-5 w-64 py-4 rounded-lg bg-red-800 hover:bg-red-600 text-white mt-8 font-extrabold text-xl"
+            className="border border-green-200 px-5 w-64 py-4 rounded-lg bg-red-600 hover:bg-red-500 text-white mt-8 font-extrabold text-xl flex items-center"
           >
+            <img className="mr-4" src="/youtube.svg" />
             Watch Trailer
           </button>
         </div>
         {showTrailer ? (
           <button
             onClick={handleCancel}
-            className="absolute top-0 right-0 m-4 px-2 py-2 bg-yellow-500 font-bold text-white cursor-pointer"
+            className="absolute top-0 right-44 px-2 py-2 bg-red-600 rounded-full font-bold text-white cursor-pointer flex items-center"
           >
-            Close
+            <img src="/x.svg" />
           </button>
         ) : null}
       </div>
       <div className="flex justify-between items-center w-[1350px]">
-        <div className="flex mt-4 items-center">
+        <div className="flex mt-7 items-center">
           <span className="flex gap-2">
             {genres.map(genre => {
               return (
@@ -117,7 +118,7 @@ const MovieDetails = ({ data }) => {
         </div>
       </div>
       <div className="flex justify-between items-center mt-2 w-[1350px]">
-        <div className="flex mt-4 items-center">
+        <div className="flex mt-7 items-center">
           <span className="flex gap-2">
             <strong className="mr-2 text-lg uppercase">Status :</strong>
           </span>
@@ -145,13 +146,52 @@ const MovieDetails = ({ data }) => {
 };
 
 const CreditSection = ({ credits }) => {
+  const [visibleCards, setVisibleCards] = useState(10);
+
+  const handleVisibleCards = () => {
+    setVisibleCards(p => p + 10);
+  };
   const { crew, cast } = credits;
   console.log(crew, cast);
   return (
-    <div className="flex flex-wrap">
-      {crew.map(crew => {
-        return <div>{crew.name}</div>;
+    <div className="flex flex-wrap gap-4 mt-8">
+      {cast.slice(0, visibleCards).map((cast, index) => {
+        return (
+          <div
+            key={index}
+            className="flex items-center flex-col justify-center"
+          >
+            {cast.profile_path ? (
+              <>
+                <Image
+                  className="object-cover rounded-lg"
+                  width={150}
+                  height={150}
+                  src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}
+                  alt={cast.name}
+                />
+                <h3 className="mt-2 text-lg text-white">{cast.name}</h3>
+              </>
+            ) : (
+              <>
+                <div className="border flex items-center border-black rounded-lg w-[153px] h-[230px] bg-white/70 text-center text-xl justify-center px-10">
+                  Image Not Available 🚫
+                </div>
+                <h3 className="mt-2 text-lg text-white">{cast.name}</h3>
+              </>
+            )}
+          </div>
+        );
       })}
+      {visibleCards < cast.length && (
+        <button
+          onClick={handleVisibleCards}
+          className=" border flex flex-col items-center border-black rounded-lg w-[153px] h-[230px] bg-white/80 text-center text-xl justify-center hover:bg-white/40"
+        >
+          View More
+          <img src="/arrow-right.svg" />
+        </button>
+      )}
     </div>
   );
 };
