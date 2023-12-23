@@ -27,37 +27,32 @@ const UpTriangle = ({ size }) => {
 const MovieList = () => {
   const [movie, setMovie] = useState([]);
   const [toggle, setToggle] = useState(false);
-  const [selectedMovie, setSelectedMovie] = useState([]);
+  const [pageChangeValue, setPageChangeValue] = useState(1);
+
+  const previousPage = () => {
+    if (pageChangeValue > 1) {
+      setPageChangeValue(p => p - 1);
+    }
+  };
+
+  const nextPage = () => {
+    setPageChangeValue(p => p + 1);
+  };
 
   const dispatch = useDispatch();
 
   const movieList = async () => {
     const data = await fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.NEXT_PUBLIC_MOVIE_API_KEY}&page=1`
+      `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.NEXT_PUBLIC_MOVIE_API_KEY}&page=${pageChangeValue}`
     );
     const json = await data.json();
     setMovie(json.results);
-    //console.log(json.results);
   };
 
   useEffect(() => {
     movieList();
     dispatch(closeSidebar());
-  }, []);
-
-  // const fetchMovie = async id => {
-  //   const data = await fetch(
-  //     `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.NEXT_PUBLIC_MOVIE_API_KEY}`
-  //   );
-  //   const json = await data.json();
-  //   console.log(json);
-  //   setSelectedMovie(json);
-  // };
-
-  // const selectMovie = async item => {
-  //   fetchMovie(item.id);
-  //   setSelectedMovie(item);
-  // };
+  }, [pageChangeValue]);
 
   return (
     <>
@@ -102,16 +97,31 @@ const MovieList = () => {
                 key={item.id}
                 href={`/movies/${item.id}`}
               />
-              // selectMovie={selectMovie}
             );
           })}
         </div>
+      </div>
+      <div className="mt-5 flex items-center w-56 justify-between mb-5">
+        <button onClick={previousPage}>
+          <img
+            className="text-white"
+            src="/chevrons-left.svg"
+            alt="previous-button"
+          />
+        </button>
+
+        <h3 className="font-bold text-lg text-white rounded-full bg-blue-600 px-3 py-1">
+          {pageChangeValue}
+        </h3>
+        <button onClick={nextPage}>
+          <img src="/chevrons-right.svg" alt="next-button" />
+        </button>
       </div>
     </>
   );
 };
 
-const MovieCard = ({ item, selectMovie }) => {
+const MovieCard = ({ item }) => {
   return (
     <>
       <Link href={`/movies/${item.id}`}>
