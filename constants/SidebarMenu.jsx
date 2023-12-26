@@ -1,6 +1,10 @@
 "use client";
 export const SidebarMenu = [
   {
+    title: "Home",
+    path: "/",
+  },
+  {
     title: "Movies",
     path: "/movies",
   },
