@@ -23,15 +23,14 @@ export default function RootLayout({ children }) {
               <div className="bg-gray-400 h-screen w-full fixed z-30 opacity-80"></div>
             )} */}
             <Navbar />
-            <div className="flex">
-              <div className="absolute z-30 opacity-80">
-                <Sidebar />
-              </div>
-              <main>
-                <div className="px-32">{children}</div>
-              </main>
+
+            <div className="absolute z-30 opacity-80">
+              <Sidebar />
             </div>
           </div>
+          <main>
+            <div>{children}</div>
+          </main>
         </body>
       </Provider>
     </html>

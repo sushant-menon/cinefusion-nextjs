@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 6px;
 }
 
@@ -21,11 +21,12 @@
 
 .scrollbar-track {
   background: #1a202c;
-}
+} */
 
 @layer base {
   body {
-    @apply overflow-x-hidden overflow-y-hidden bg-gray-800;
+    /* @apply overflow-x-hidden overflow-y-hidden bg-gray-800; */
+    @apply bg-gray-800;
   }
 }
 

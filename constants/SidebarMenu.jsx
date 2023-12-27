@@ -10,7 +10,7 @@ export const SidebarMenu = [
   },
   {
     title: "TV Shows",
-    path: "/tvshows",
+    path: "/tvShows",
   },
   {
     title: "menu 3",
