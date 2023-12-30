@@ -5,6 +5,8 @@ import { Inter } from "next/font/google";
 import Sidebar from "@/components/sidebar/Sidebar";
 import { Provider } from "react-redux";
 import store from "@/redux/store";
+import "@radix-ui/themes/styles.css";
+import { Theme } from "@radix-ui/themes";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,19 +20,21 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <Provider store={store}>
         <body className={inter.className}>
-          <div>
-            {/* {toggle && (
+          <Theme className="bg-gray-700">
+            <div>
+              {/* {toggle && (
               <div className="bg-gray-400 h-screen w-full fixed z-30 opacity-80"></div>
             )} */}
-            <Navbar />
+              <Navbar />
 
-            <div className="absolute z-30 opacity-80">
-              <Sidebar />
+              <div className="absolute z-30 opacity-80">
+                <Sidebar />
+              </div>
             </div>
-          </div>
-          <main>
-            <div>{children}</div>
-          </main>
+            <main>
+              <div>{children}</div>
+            </main>
+          </Theme>
         </body>
       </Provider>
     </html>
