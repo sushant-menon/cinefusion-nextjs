@@ -4,10 +4,12 @@ import Image from "next/image";
 import { toggleSidebar } from "@/redux/features/appslice";
 import { useDispatch } from "react-redux";
 import Link from "next/link";
+import Login from "../login/Login";
 
 const Navbar = ({ toggle }) => {
   const [searchValue, setSearchValue] = useState("");
   const [showSearchBar, setShowSearchBar] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
 
   const dispatch = useDispatch();
   const toggleSidebarMenu = () => {
@@ -18,6 +20,10 @@ const Navbar = ({ toggle }) => {
     setShowSearchBar(true);
     e.preventDefault();
     setSearchValue("");
+  };
+
+  const handleSignUpButton = () => {
+    setShowLogin(!showLogin);
   };
 
   return (
@@ -68,11 +74,16 @@ const Navbar = ({ toggle }) => {
             )}
           </form>
 
-          <button className="border border-black bg-gray-800 text-white/60 px-2 py-2 font-bold hover:bg-red-600 hover:text-white rounded-lg">
+          <button
+            onClick={handleSignUpButton}
+            className="border border-black bg-gray-800 text-white/60 px-2 py-2 font-bold hover:bg-red-600 hover:text-white rounded-lg"
+          >
             Sign Up
           </button>
+          {showLogin && <Login />}
         </div>
       </div>
+      {/* <div className="absolute bg-black w-full h-screen text-white"></div> */}
     </>
   );
 };

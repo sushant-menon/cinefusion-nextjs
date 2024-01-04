@@ -2,6 +2,7 @@
 import { closeSidebar } from "@/redux/features/appslice";
 import { Switch } from "@radix-ui/themes";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 
@@ -89,6 +90,7 @@ export default function Home() {
           }}
         ></div>
         {/* Carousel */}
+
         <div className="absolute top-0 w-full h-full flex items-center justify-center">
           <div className="w-[1600px] mx-auto opacity-75 h-screen text-center text-white">
             <div className="mx-auto h-1/2">
@@ -105,13 +107,13 @@ export default function Home() {
                 <div className="flex absolute justify-between w-[1650px] items-center text-3xl mt-36">
                   <button
                     onClick={onPrev}
-                    className="bg-black rounded-full px-5 py-3"
+                    className="bg-black rounded-full px-5 py-3 hover:bg-gray-500"
                   >
                     &lt;
                   </button>
                   <button
                     onClick={onNext}
-                    className="bg-black rounded-full px-5 py-3"
+                    className="bg-black rounded-full px-5 py-3 hover:bg-gray-500"
                   >
                     &gt;
                   </button>
@@ -150,8 +152,23 @@ export default function Home() {
             </div>
 
             {/* Categories to select */}
-            <div className="mt-32">
+            <div className="mt-24">
               <h1 className="font-extrabold text-4xl">Explore Categories</h1>
+              <div className="flex justify-evenly items-center mt-5">
+                <Link
+                  className="border-2 rounded-lg px-3 py-2 font-bold text-lg text-white hover:bg-gray-900"
+                  href="/movies"
+                >
+                  Movies
+                </Link>
+
+                <Link
+                  className="border-2 rounded-lg px-3 py-2 font-bold text-lg text-white hover:bg-gray-900"
+                  href="/tvShows"
+                >
+                  Tv
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -169,17 +186,17 @@ const CarouselComp = ({
   active,
 }) => {
   return (
-    <div className={`text-center ${active ? "block" : "hidden"}`}>
-      <img
-        className="absolute top-12 left-[200px] w-[1200px] h-[650px] object-fill saturate-150 rounded-3xl"
-        src={`https://image.tmdb.org/t/p/w1280${poster_path}`}
-        alt={title}
-      />
-      <h2 className="mt-[920px] font-extrabold text-4xl">
-        {original_name ? original_name : original_title}
-      </h2>
-    </div>
+    <>
+      <div className={`text-center ${active ? "block" : "hidden"}`}>
+        <img
+          className="absolute top-12 left-[200px] w-[1200px] h-[650px] object-fill saturate-150 rounded-3xl"
+          src={`https://image.tmdb.org/t/p/w1280${poster_path}`}
+          alt={title}
+        />
+        <h2 className="mt-[920px] font-extrabold text-4xl">
+          {original_name ? original_name : original_title}
+        </h2>
+      </div>
+    </>
   );
 };
-
-// w-[900] , h-[500]
