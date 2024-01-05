@@ -1,5 +1,5 @@
 "use client";
-import { closeSidebar } from "@/redux/features/appSlice";
+import { closeSidebar } from "@/slice/appSlice";
 import { Switch } from "@radix-ui/themes";
 import Image from "next/image";
 import Link from "next/link";

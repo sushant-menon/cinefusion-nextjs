@@ -4,7 +4,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import Sidebar from "@/components/sidebar/Sidebar";
 import { Provider } from "react-redux";
-import store from "@/redux/store";
+import store from "@/store";
 import "@radix-ui/themes/styles.css";
 import { Theme } from "@radix-ui/themes";
 

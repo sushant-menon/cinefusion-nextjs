@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import { toggleSidebar } from "@/redux/features/appSlice";
+import { toggleSidebar } from "@/slice/appSlice";
 import { useDispatch } from "react-redux";
 import Link from "next/link";
 import Login from "../login/Login";
