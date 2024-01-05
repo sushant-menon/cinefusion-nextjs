@@ -24,6 +24,7 @@ const MovieDetails = ({ data }) => {
 
   useEffect(() => {
     dispatch(closeSidebar());
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleCancel = () => {
