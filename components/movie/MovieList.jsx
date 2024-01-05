@@ -1,4 +1,4 @@
-import { closeSidebar } from "@/redux/features/appslice";
+import { closeSidebar } from "@/redux/features/appSlice";
 import { MovieCategoryList } from "@/constants/MovieCategoryList";
 import Image from "next/image";
 import Link from "next/link";

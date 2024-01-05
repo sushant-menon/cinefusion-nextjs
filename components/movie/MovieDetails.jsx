@@ -1,4 +1,4 @@
-import { closeSidebar } from "@/redux/features/appslice";
+import { closeSidebar } from "@/redux/features/appSlice";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";

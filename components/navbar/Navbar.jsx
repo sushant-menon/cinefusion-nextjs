@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import { toggleSidebar } from "@/redux/features/appslice";
+import { toggleSidebar } from "@/redux/features/appSlice";
 import { useDispatch } from "react-redux";
 import Link from "next/link";
 import Login from "../login/Login";
@@ -30,7 +30,7 @@ const Navbar = ({ toggle }) => {
     <>
       <div
         onClick={() => setShowSearchBar(false)}
-        className="flex bg-white/40 px-3 py-5 justify-between items-center"
+        className="flex bg-gray-500 px-3 py-5 justify-between items-center"
       >
         <div className="flex items-center">
           <button onClick={() => toggleSidebarMenu()}>

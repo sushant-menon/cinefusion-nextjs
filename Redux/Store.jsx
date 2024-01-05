@@ -1,4 +1,4 @@
-import AppSlice from "./features/appslice";
+import AppSlice from "./features/appSlice";
 
 const { configureStore } = require("@reduxjs/toolkit");
 
