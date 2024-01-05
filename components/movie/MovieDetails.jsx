@@ -71,9 +71,17 @@ const MovieDetails = ({ data }) => {
   return (
     <>
       <div className="relative">
-        <img
+        {/* <img
           className="w-[1450px] h-[768px]"
           src={`https://image.tmdb.org/t/p/w1280${backdrop_path}`}
+          alt={data.title}
+        /> */}
+
+        <Image
+          src={`https://image.tmdb.org/t/p/w1280${backdrop_path}`}
+          className="w-[1450px] h-[768px]"
+          width={300}
+          height={300}
           alt={data.title}
         />
         <div className="absolute bottom-0 mb-20 ml-8">

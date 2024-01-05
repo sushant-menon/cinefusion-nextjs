@@ -245,10 +245,16 @@ const CarouselComp = ({
   return (
     <>
       <div className={`text-center ${active ? "block" : "hidden"}`}>
-        <img
+        {/* <img
           className="absolute top-12 left-[200px] w-[1200px] h-[650px] object-fill saturate-150 rounded-3xl"
           src={`https://image.tmdb.org/t/p/w1280${poster_path}`}
           alt={title}
+        /> */}
+        <Image
+          className="absolute top-12 left-[200px] w-[1200px] h-[650px] object-fill saturate-150 rounded-3xl"
+          src={`https://image.tmdb.org/t/p/w1280${poster_path}`}
+          width={300}
+          height={300}
         />
         <h2 className="mt-[920px] font-extrabold text-4xl">
           {original_name ? original_name : original_title}
