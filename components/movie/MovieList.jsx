@@ -116,10 +116,17 @@ const MovieList = () => {
           onClick={previousPage}
         >
           <div className="flex items-center">
-            <img
+            {/* <img
               className="text-white"
               src="/chevrons-left.svg"
               alt="previous-button"
+            /> */}
+            <Image
+              className="text-white"
+              src="/chevrons-left.svg"
+              alt="previous-button"
+              width={20}
+              height={37}
             />
             <p>Prev</p>
           </div>
@@ -133,7 +140,14 @@ const MovieList = () => {
           onClick={nextPage}
         >
           <div className="flex flex-row-reverse items-center">
-            <img src="/chevrons-right.svg" alt="next-button" />
+            {/* <img src="/chevrons-right.svg" alt="next-button" /> */}
+            <Image
+              className="text-white"
+              src="/chevrons-right.svg"
+              alt="next-button"
+              width={20}
+              height={37}
+            />
             <p>Next</p>
           </div>
         </button>

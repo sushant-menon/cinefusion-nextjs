@@ -65,11 +65,23 @@ const Navbar = ({ toggle }) => {
 
             {!showSearchBar ? (
               <button className="rounded-full border-2 border-black px-2 py-2 hover:bg-blue-600">
-                <img src="/search (2).svg" alt="search-button" />
+                {/* <img src="/search (2).svg" alt="search-button" /> */}
+                <Image
+                  src="/search (2).svg"
+                  alt="search-button"
+                  width={20}
+                  height={37}
+                />
               </button>
             ) : (
               <button className="rounded-xl rounded-l-none border-2 border-black px-3 py-2 hover:bg-blue-600">
-                <img src="/search (2).svg" alt="search-button" />
+                {/* <img src="/search (2).svg" alt="search-button" /> */}
+                <Image
+                  src="/search (2).svg"
+                  alt="search-button"
+                  width={20}
+                  height={37}
+                />
               </button>
             )}
           </form>

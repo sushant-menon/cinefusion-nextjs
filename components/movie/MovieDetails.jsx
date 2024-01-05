@@ -92,7 +92,14 @@ const MovieDetails = ({ data }) => {
             onClick={handleWatchTrailer}
             className="border border-green-200 px-5 w-64 py-4 rounded-lg bg-red-600 hover:bg-red-500 text-white mt-8 font-extrabold text-xl flex items-center"
           >
-            <img className="mr-4" src="/youtube.svg" />
+            {/* <img className="mr-4" src="/youtube.svg" /> */}
+            <Image
+              className="mr-4"
+              src="/youtube.svg"
+              width={25}
+              height={37}
+              alt="yt-img"
+            />
             Watch Trailer
           </button>
         </div>
@@ -101,7 +108,8 @@ const MovieDetails = ({ data }) => {
             onClick={handleCancel}
             className="absolute top-0 right-20 px-2 py-2 bg-red-600 rounded-full font-bold text-white cursor-pointer flex items-center"
           >
-            <img src="/x.svg" />
+            {/* <img src="/x.svg" /> */}
+            <Image src="/x.svg" alt="x-image" width={20} height={30} />
           </button>
         ) : null}
       </div>
@@ -201,7 +209,13 @@ const CreditSection = ({ credits }) => {
               className=" border flex flex-col items-center border-black rounded-lg w-[153px] h-[225px] bg-white/80 text-center text-xl justify-center hover:bg-white/40 font-bold"
             >
               View More
-              <img src="/arrow-right.svg" />
+              {/* <img src="/arrow-right.svg" /> */}
+              <Image
+                src="/arrow-right.svg"
+                alt="view-more-btn"
+                width={20}
+                height={20}
+              />
             </button>
           )}
         </div>
