@@ -1,4 +1,5 @@
 "use client";
+import ForTrial from "@/components/trial/ForTrial";
 import { closeSidebar } from "@/slice/appSlice";
 import { Switch } from "@radix-ui/themes";
 import Image from "next/image";
@@ -79,6 +80,7 @@ export default function Home() {
     // return () => clearInterval(intervalRef.current);
   }, [currentCategory, category, active, dispatch]);
 
+  if (!trendingList) return <ForTrial />;
   return (
     <>
       <div className="relative h-screen">
