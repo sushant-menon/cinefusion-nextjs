@@ -77,7 +77,7 @@ export default function Home() {
     // }, 3000);
 
     // return () => clearInterval(intervalRef.current);
-  }, [currentCategory, category, active, dispatch, trendingList]);
+  }, [currentCategory, category, active, dispatch]);
 
   return (
     <>
