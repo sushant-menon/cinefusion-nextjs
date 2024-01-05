@@ -80,7 +80,7 @@ export default function Home() {
     // return () => clearInterval(intervalRef.current);
   }, [currentCategory, category, active, dispatch]);
 
-  if (!trendingList) return <ForTrial />;
+  if (!trendingList) return null;
   return (
     <>
       <div className="relative h-screen">
