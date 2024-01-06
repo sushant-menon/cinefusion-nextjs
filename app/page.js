@@ -80,7 +80,8 @@ export default function Home() {
     // return () => clearInterval(intervalRef.current);
   }, [currentCategory, category, active, dispatch]);
 
-  if (!trendingList) return null;
+  if (trendingList.length === 0) return <ForTrial />;
+
   return (
     <>
       <div className="relative h-screen">
@@ -177,63 +178,6 @@ export default function Home() {
       </div>
     </>
   );
-
-  //   return (
-  //     <div className="flex justify-center items-center min-h-screen">
-  //       <div>
-  //         <img
-  //           className="w-screen h-screen object-cover"
-  //           src="https://assets.nflxext.com/ffe/siteui/vlv3/563192ea-ac0e-4906-a865-ba9899ffafad/6b2842d1-2339-4f08-84f6-148e9fcbe01b/IN-en-20231218-popsignuptwoweeks-perspective_alpha_website_large.jpg"
-  //           alt="bg-image-netflix"
-  //         />
-  //       </div>
-  //       <div className="absolute w-screen h-screen ">
-  //         {/* Carousal */}
-  //         <div className="px-14 py-8 md:px-14 md:py-4 flex flex-col md:flex-row items-center justify-start md:justify-center md:items-start min-h-screen">
-  //           <div className=" relative w-full border border-white md:w-[1200px] text-center h-[700px] md:h-[650px]">
-  //             {trendList.map((item, i) => {
-  //               return (
-  //                 <CarouselComp {...item} key={item.id} active={i === active} />
-  //               );
-  //             })}
-  //           </div>
-  //           <div className="absolute flex justify-between items-center h-1/2 w-[500px]">
-  //             <button className="text-4xl text-white bg-black rounded-full px-5 py-2 hover:bg-gray-500">
-  //               &lt;
-  //             </button>
-  //             <button className="text-4xl text-white bg-black rounded-full px-5 py-2 hover:bg-gray-500">
-  //               &gt;
-  //             </button>
-  //           </div>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   );
-  // }
-
-  // const CarouselComp = ({
-  //   title,
-  //   original_title,
-  //   poster_path,
-  //   backdrop_path,
-  //   original_name,
-  //   active,
-  // }) => {
-  //   return (
-  //     <>
-  //       <div className={`text-center ${active ? "block" : "hidden"}`}>
-  //         <img
-  //           className="w-full h-[700px] object-fill saturate-150 md:h-[650px] rounded-xl"
-  //           src={`https://image.tmdb.org/t/p/w1280${poster_path}`}
-  //           alt={title}
-  //         />
-  //         <h2 className="mt-10 font-extrabold text-4xl">
-  //           {original_name ? original_name : original_title}
-  //         </h2>
-  //       </div>
-  //     </>
-  //   );
-  // };
 }
 
 const CarouselComp = ({
@@ -261,3 +205,60 @@ const CarouselComp = ({
     </>
   );
 };
+
+//   return (
+//     <div className="flex justify-center items-center min-h-screen">
+//       <div>
+//         <img
+//           className="w-screen h-screen object-cover"
+//           src="https://assets.nflxext.com/ffe/siteui/vlv3/563192ea-ac0e-4906-a865-ba9899ffafad/6b2842d1-2339-4f08-84f6-148e9fcbe01b/IN-en-20231218-popsignuptwoweeks-perspective_alpha_website_large.jpg"
+//           alt="bg-image-netflix"
+//         />
+//       </div>
+//       <div className="absolute w-screen h-screen ">
+//         {/* Carousal */}
+//         <div className="px-14 py-8 md:px-14 md:py-4 flex flex-col md:flex-row items-center justify-start md:justify-center md:items-start min-h-screen">
+//           <div className=" relative w-full border border-white md:w-[1200px] text-center h-[700px] md:h-[650px]">
+//             {trendList.map((item, i) => {
+//               return (
+//                 <CarouselComp {...item} key={item.id} active={i === active} />
+//               );
+//             })}
+//           </div>
+//           <div className="absolute flex justify-between items-center h-1/2 w-[500px]">
+//             <button className="text-4xl text-white bg-black rounded-full px-5 py-2 hover:bg-gray-500">
+//               &lt;
+//             </button>
+//             <button className="text-4xl text-white bg-black rounded-full px-5 py-2 hover:bg-gray-500">
+//               &gt;
+//             </button>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+// const CarouselComp = ({
+//   title,
+//   original_title,
+//   poster_path,
+//   backdrop_path,
+//   original_name,
+//   active,
+// }) => {
+//   return (
+//     <>
+//       <div className={`text-center ${active ? "block" : "hidden"}`}>
+//         <img
+//           className="w-full h-[700px] object-fill saturate-150 md:h-[650px] rounded-xl"
+//           src={`https://image.tmdb.org/t/p/w1280${poster_path}`}
+//           alt={title}
+//         />
+//         <h2 className="mt-10 font-extrabold text-4xl">
+//           {original_name ? original_name : original_title}
+//         </h2>
+//       </div>
+//     </>
+//   );
+// };
