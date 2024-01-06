@@ -260,6 +260,8 @@ const CarouselComp = ({
           className="w-full h-[700px] object-fill saturate-150 md:h-[650px] rounded-xl"
           src={`https://image.tmdb.org/t/p/w1280${poster_path}`}
           alt={title}
+          width={300}
+          height={300}
         />
         <h2 className="mt-10 font-extrabold text-4xl">
           {original_name ? original_name : original_title}
