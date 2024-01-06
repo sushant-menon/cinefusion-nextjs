@@ -219,14 +219,14 @@ export default function Home() {
       <div className="absolute w-screen h-screen ">
         {/* Carousal */}
         <div className="px-14 py-8 md:px-14 md:py-4 flex flex-col md:flex-row items-center justify-start md:justify-center md:items-start min-h-screen">
-          <div className=" relative w-full border border-white md:w-[1200px] text-center h-[700px] md:h-[650px]">
+          <div className=" relative w-full border border-white rounded-md md:w-[1200px] text-center h-[300px] md:h-[650px]">
             {trendList.map((item, i) => {
               return (
                 <CarouselComp {...item} key={item.id} active={i === active} />
               );
             })}
           </div>
-          <div className="absolute flex justify-between items-center h-1/2 w-[500px]">
+          <div className="absolute flex justify-evenly items-center h-3/4 md:h-1/2 md:justify-between md:w-[1400px] w-[500px]">
             <button className="text-4xl text-white bg-black rounded-full px-5 py-2 hover:bg-gray-500">
               &lt;
             </button>
@@ -257,7 +257,7 @@ const CarouselComp = ({
           alt={title}
         /> */}
         <Image
-          className="w-full h-[700px] object-fill saturate-150 md:h-[650px] rounded-xl"
+          className="w-full h-[300px] object-fill saturate-150 md:h-[650px] rounded-xl"
           src={`https://image.tmdb.org/t/p/w1280${poster_path}`}
           alt={title}
           width={300}
