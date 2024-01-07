@@ -208,7 +208,7 @@ export default function Home() {
   // };
 
   return (
-    <div className="flex justify-center items-center max-h-screen w-full">
+    <div className="flex justify-center items-center max-h-screen">
       <div>
         <img
           className="w-screen h-screen object-cover"
@@ -219,23 +219,55 @@ export default function Home() {
       <div className="absolute w-screen h-screen">
         {/* Carousal */}
         <div className="px-14 py-8 md:px-14 md:py-4 flex flex-col md:flex-row items-center justify-start md:justify-center md:items-start min-h-screen">
-          <div className=" relative w-full  rounded-md md:w-[1200px] text-center h-[300px] md:h-[650px]">
+          <div className=" relative w-full rounded-md md:w-[1200px] text-center h-[300px] md:h-[650px]">
             {trendList.map((item, i) => {
               return (
                 <CarouselComp {...item} key={item.id} active={i === active} />
               );
             })}
+            <div className="text-3xl text-white mt-8 lg:mt-8">
+              <div className="flex flex-col">
+                <h2 className="font-bold text-2xl ">What's trending ? </h2>
+                <div className="flex mt-3 justify-center items-center space-x-10">
+                  <div className="flex space-x-2 items-center">
+                    <p className="font-bold text-lg">Day</p>
+                    <Switch
+                      className="bg-gray-900"
+                      size="3"
+                      color="black"
+                      highContrast
+                      value={currentCategory}
+                      onCheckedChange={changeCategoryButton}
+                    />
+                    <p className="font-bold text-lg">Week</p>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <p className="font-bold text-lg">Tv</p>
+                    {/* Switch between tv and movies */}
+                    <Switch
+                      className="bg-gray-900"
+                      size="3"
+                      color="black"
+                      highContrast
+                      value={category}
+                      onCheckedChange={changeCategoryAllTogether}
+                    />
+                    <p className="font-bold text-lg">Movies</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="absolute flex justify-evenly items-center h-3/4 md:h-1/2 md:justify-between md:w-[1400px] w-[500px] mt-12">
+          <div className="absolute flex justify-evenly items-center h-3/4 md:h-1/2 md:justify-between md:w-[1400px] w-[500px] mt-4 lg:mt-0">
             <button
               onClick={onPrev}
-              className="text-4xl text-white bg-black rounded-full px-5 py-2 hover:bg-gray-500"
+              className="text-4xl text-white bg-black rounded-full px-3 py-1 lg:px-5 lg:py-2 hover:bg-gray-500"
             >
               &lt;
             </button>
             <button
               onClick={onNext}
-              className="text-4xl text-white bg-black rounded-full px-5 py-2 hover:bg-gray-500"
+              className="text-4xl text-white bg-black rounded-full px-3 py-1 lg:px-5 lg:py-2 hover:bg-gray-500"
             >
               &gt;
             </button>
@@ -269,9 +301,9 @@ const CarouselComp = ({
           width={300}
           height={300}
         />
-        <h2 className="mt-16 xl:m-10 font-extrabold text-4xl text-white">
+        {/* <h2 className="mt-16 xl:m-10 font-extrabold text-4xl text-white">
           {original_name ? original_name : original_title}
-        </h2>
+        </h2> */}
       </div>
     </>
   );

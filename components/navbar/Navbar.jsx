@@ -30,19 +30,20 @@ const Navbar = ({ toggle }) => {
     <>
       <div
         onClick={() => setShowSearchBar(false)}
-        className="flex bg-gray-700 px-3 py-5 justify-between items-center"
+        className="flex bg-gray-700 px-3 py-2 lg:py-5  justify-between items-center"
       >
-        <div className="flex items-center">
+        <div className="lg:flex lg:items-center flex">
           <button onClick={() => toggleSidebarMenu()}>
             <Image
+              className="w-full"
               src="https://cdn.iconscout.com/icon/free/png-256/free-hamburger-menu-462145.png?f=webp"
               alt=""
-              width={40}
-              height={37}
+              width={34}
+              height={20}
             />
           </button>
           <Link href="/">
-            <h1 className="font-bold text-3xl"> CINEFUSION </h1>
+            <h1 className="font-bold text-3xl"> CF </h1>
           </Link>
         </div>
         <div
@@ -95,7 +96,7 @@ const Navbar = ({ toggle }) => {
           {showLogin && <Login />}
         </div>
       </div>
-      {/* <div className="absolute bg-black w-full h-screen text-white"></div> */}
+      {/* <div className="absolute bg-gray-400 w-full h-screen"></div> */}
     </>
   );
 };

@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
               </div>
             </div>
             <main className="">
-              <div>{children}</div>
+              <div className="">{children}</div>
             </main>
           </Theme>
         </body>
