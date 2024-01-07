@@ -219,14 +219,14 @@ export default function Home() {
       <div className="absolute w-screen h-screen ">
         {/* Carousal */}
         <div className="px-14 py-8 md:px-14 md:py-4 flex flex-col md:flex-row items-center justify-start md:justify-center md:items-start min-h-screen">
-          <div className=" relative w-full border border-white rounded-md md:w-[1200px] text-center h-[300px] md:h-[650px]">
+          <div className=" relative w-full  rounded-md md:w-[1200px] text-center h-[300px] md:h-[650px]">
             {trendList.map((item, i) => {
               return (
                 <CarouselComp {...item} key={item.id} active={i === active} />
               );
             })}
           </div>
-          <div className="absolute flex justify-evenly items-center h-3/4 md:h-1/2 md:justify-between md:w-[1400px] w-[500px] mt-14">
+          <div className="absolute flex justify-evenly items-center h-3/4 md:h-1/2 md:justify-between md:w-[1400px] w-[500px] mt-12">
             <button
               onClick={onPrev}
               className="text-4xl text-white bg-black rounded-full px-5 py-2 hover:bg-gray-500"
@@ -269,7 +269,7 @@ const CarouselComp = ({
           width={300}
           height={300}
         />
-        <h2 className="mt-10 font-extrabold text-4xl">
+        <h2 className="mt-16 font-extrabold text-4xl">
           {original_name ? original_name : original_title}
         </h2>
       </div>
