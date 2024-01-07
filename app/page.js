@@ -208,7 +208,7 @@ export default function Home() {
   // };
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
+    <div className="flex justify-center items-center h-full">
       <div>
         <img
           className="w-screen h-screen object-cover"
@@ -216,7 +216,7 @@ export default function Home() {
           alt="bg-image-netflix"
         />
       </div>
-      <div className="absolute w-screen h-screen ">
+      <div className="absolute w-screen h-screen">
         {/* Carousal */}
         <div className="px-14 py-8 md:px-14 md:py-4 flex flex-col md:flex-row items-center justify-start md:justify-center md:items-start min-h-screen">
           <div className=" relative w-full  rounded-md md:w-[1200px] text-center h-[300px] md:h-[650px]">
@@ -269,7 +269,7 @@ const CarouselComp = ({
           width={300}
           height={300}
         />
-        <h2 className="mt-16 font-extrabold text-4xl">
+        <h2 className="mt-16 xl:m-10 font-extrabold text-4xl text-white">
           {original_name ? original_name : original_title}
         </h2>
       </div>
