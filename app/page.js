@@ -208,7 +208,7 @@ export default function Home() {
   // };
 
   return (
-    <div className="flex justify-center items-center h-full">
+    <div className="flex justify-center items-center max-h-screen w-full">
       <div>
         <img
           className="w-screen h-screen object-cover"

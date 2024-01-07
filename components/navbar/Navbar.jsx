@@ -30,7 +30,7 @@ const Navbar = ({ toggle }) => {
     <>
       <div
         onClick={() => setShowSearchBar(false)}
-        className="flex bg-gray-500 px-3 py-5 justify-between items-center"
+        className="flex bg-gray-700 px-3 py-5 justify-between items-center"
       >
         <div className="flex items-center">
           <button onClick={() => toggleSidebarMenu()}>
