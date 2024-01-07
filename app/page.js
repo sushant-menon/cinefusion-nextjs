@@ -226,11 +226,17 @@ export default function Home() {
               );
             })}
           </div>
-          <div className="absolute flex justify-evenly items-center h-3/4 md:h-1/2 md:justify-between md:w-[1400px] w-[500px]">
-            <button className="text-4xl text-white bg-black rounded-full px-5 py-2 hover:bg-gray-500">
+          <div className="absolute flex justify-evenly items-center h-3/4 md:h-1/2 md:justify-between md:w-[1400px] w-[500px] mt-5">
+            <button
+              onClick={onPrev}
+              className="text-4xl text-white bg-black rounded-full px-5 py-2 hover:bg-gray-500"
+            >
               &lt;
             </button>
-            <button className="text-4xl text-white bg-black rounded-full px-5 py-2 hover:bg-gray-500">
+            <button
+              onClick={onNext}
+              className="text-4xl text-white bg-black rounded-full px-5 py-2 hover:bg-gray-500"
+            >
               &gt;
             </button>
           </div>
