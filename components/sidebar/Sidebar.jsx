@@ -12,7 +12,7 @@ const Sidebar = ({ toggle, setToggle }) => {
 
   return (
     <>
-      <div className="flex flex-col items-start bg-blue-500 h-screen w-[200px]">
+      <div className="flex flex-col items-start bg-blue-500 h-screen w-[100px] lg:w-[200px]">
         {SidebarMenu.map((item, index) => {
           return (
             <li key={index}>

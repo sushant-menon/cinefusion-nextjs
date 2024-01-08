@@ -43,7 +43,12 @@ const Navbar = ({ toggle }) => {
             />
           </button>
           <Link href="/">
-            <h1 className="font-bold text-3xl"> CF </h1>
+            <div className="text-center">
+              <h1 className="font-bold text-3xl lg:text-4xl">
+                <span className="lg:hidden">CF</span>
+                <span className="hidden lg:inline uppercase">Cinefusion</span>
+              </h1>
+            </div>
           </Link>
         </div>
         <div
@@ -53,7 +58,8 @@ const Navbar = ({ toggle }) => {
               : "flex w-96 justify-end space-x-3"
           }`}
         >
-          <form onSubmit={handleSubmit} className="flex items-center">
+          {/* Search Button */}
+          {/* <form onSubmit={handleSubmit} className="flex items-center">
             {showSearchBar && (
               <input
                 onClick={e => e.stopPropagation()}
@@ -66,7 +72,6 @@ const Navbar = ({ toggle }) => {
 
             {!showSearchBar ? (
               <button className="rounded-full border-2 border-black px-2 py-2 hover:bg-blue-600">
-                {/* <img src="/search (2).svg" alt="search-button" /> */}
                 <Image
                   src="/search (2).svg"
                   alt="search-button"
@@ -76,7 +81,6 @@ const Navbar = ({ toggle }) => {
               </button>
             ) : (
               <button className="rounded-xl rounded-l-none border-2 border-black px-3 py-2 hover:bg-blue-600">
-                {/* <img src="/search (2).svg" alt="search-button" /> */}
                 <Image
                   src="/search (2).svg"
                   alt="search-button"
@@ -85,7 +89,7 @@ const Navbar = ({ toggle }) => {
                 />
               </button>
             )}
-          </form>
+          </form> */}
 
           <button
             onClick={handleSignUpButton}
@@ -96,7 +100,7 @@ const Navbar = ({ toggle }) => {
           {showLogin && <Login />}
         </div>
       </div>
-      {/* <div className="absolute bg-gray-400 w-full h-screen"></div> */}
+      {/* <div className="absolute bg-black w-full h-screen"></div> */}
     </>
   );
 };

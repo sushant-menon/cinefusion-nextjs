@@ -1,13 +1,31 @@
-import React from "react";
+import { useState, useEffect } from "react";
 
-const ForTrial = () => {
-  return (
-    <div className="flex justify-center items-center min-h-screen">
-      <div className="border-2 border-black px-7 py-5 h-96 w-96">
-        This is a Dummy test
-      </div>
-    </div>
-  );
+const useApiData = url => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const result = await response.json();
+        setData(result);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [url]);
+
+  return { data, loading, error };
 };
 
-export default ForTrial;
+export default useApiData;
