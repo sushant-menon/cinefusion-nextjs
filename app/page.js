@@ -126,7 +126,7 @@ export default function Home() {
 
             <div className="text-3xl text-white mt-8 lg:mt-8">
               <div className="flex flex-col">
-                <h2 className="font-bold text-2xl ">What's trending ? </h2>
+                <h2 className="font-bold text-2xl ">{`What's trending ?`} </h2>
                 <div className="flex mt-3 justify-center items-center space-x-10">
                   <div className="flex space-x-2 items-center">
                     <p className="font-bold text-lg">Day</p>
