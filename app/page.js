@@ -2,7 +2,6 @@
 import ForTrial from "@/components/trial/ForTrial";
 import { closeSidebar } from "@/slice/appSlice";
 import { Switch } from "@radix-ui/themes";
-import { data } from "autoprefixer";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
