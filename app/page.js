@@ -109,7 +109,8 @@ export default function Home() {
           width={800}
           height={800}
           src="https://assets.nflxext.com/ffe/siteui/vlv3/563192ea-ac0e-4906-a865-ba9899ffafad/6b2842d1-2339-4f08-84f6-148e9fcbe01b/IN-en-20231218-popsignuptwoweeks-perspective_alpha_website_large.jpg"
-          alt="bg-image-netflix"
+          alt="bg-image-netflix's"
+          priority={true}
         />
       </div>
       <div className="absolute w-screen h-screen">
@@ -208,7 +209,6 @@ const CarouselComp = ({
   original_name,
   active,
 }) => {
-  console.log(title);
   return (
     <>
       <div className={`text-center ${active ? "block" : "hidden"}`}>
