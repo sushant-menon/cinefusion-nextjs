@@ -32,8 +32,8 @@ export default function RootLayout({ children }) {
                 <Sidebar />
               </div>
             </div>
-            <main className="">
-              <div className="">{children}</div>
+            <main>
+              <div>{children}</div>
             </main>
             <Footer />
           </Theme>
