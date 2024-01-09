@@ -6,15 +6,15 @@ export const MovieCategoryList = [
   },
   {
     title: "Top Rated Movies",
-    path: "/topratedmovies",
+    path: "/topRatedMovies",
   },
   {
     title: "Popular Movies",
-    path: "/popularmovies",
+    path: "/popularMovies",
   },
   {
     title: "Upcoming Movies",
-    path: "/upcomingmovies",
+    path: "/upcomingMovies",
   },
 ];
 
