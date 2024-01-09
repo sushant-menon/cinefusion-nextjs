@@ -1,5 +1,5 @@
-"use client";
-import MovieList from "@/components/movie/MovieList";
+// "use client";
+// import MovieList from "@/components/movie/MovieList";
 import React from "react";
 
 const movies = () => {
