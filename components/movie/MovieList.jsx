@@ -64,17 +64,19 @@ const MovieList = () => {
 
   return (
     <>
-      <div className="text-white text-5xl font-semibold mb-4">Movies</div>
+      <div className="text-white lg:text-5xl text-2xl font-semibold mb-4">
+        Movies
+      </div>
       <div className="relative">
         <button
           onClick={() => setToggle(!toggle)}
-          className="text-2xl mb-4 border py-1 rounded text-white px-2 hover:bg-gray-400 bg-gray-500"
+          className="lg:text-2xl mb-4 border py-1 rounded text-white px-2 hover:bg-gray-400 bg-gray-500"
         >
           Select Category
         </button>
         {toggle && (
           <div
-            className="absolute bg-black text-white rounded-xl border p-3 text-lg z-10 w-72"
+            className="absolute bg-black text-white rounded-xl border p-3 text-lg z-10 w-36 lg;w-72"
             style={{ top: "100%", left: "" }}
           >
             <UpTriangle size={10} />
@@ -97,7 +99,7 @@ const MovieList = () => {
       </div>
 
       <div className="mx-auto">
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap gap-4 items-center justify-center">
           {movie.map(item => {
             return (
               <MovieCard
@@ -116,11 +118,6 @@ const MovieList = () => {
           onClick={previousPage}
         >
           <div className="flex items-center">
-            {/* <img
-              className="text-white"
-              src="/chevrons-left.svg"
-              alt="previous-button"
-            /> */}
             <Image
               className="text-white"
               src="/chevrons-left.svg"
@@ -140,7 +137,6 @@ const MovieList = () => {
           onClick={nextPage}
         >
           <div className="flex flex-row-reverse items-center">
-            {/* <img src="/chevrons-right.svg" alt="next-button" /> */}
             <Image
               className="text-white"
               src="/chevrons-right.svg"

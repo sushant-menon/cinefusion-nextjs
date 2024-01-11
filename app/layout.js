@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <Provider store={store}>
         <body className={inter.className}>
-          <Theme>
+          <Theme className="">
             <div>
               {/* {toggle && (
               <div className="bg-gray-400 h-screen w-full fixed z-30 opacity-80"></div>
@@ -33,7 +33,7 @@ export default function RootLayout({ children }) {
               </div>
             </div>
             <main>
-              <div>{children}</div>
+              <div className="bg-gray-900">{children}</div>
             </main>
             <Footer />
           </Theme>
