@@ -1,5 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async redirects() {
+    return [
+      {
+        source: "/Movies/",
+        destination: "/movies/",
+        permanent: true,
+      },
+    ];
+  },
   images: {
     domains: [
       "cdn.iconscout.com",
