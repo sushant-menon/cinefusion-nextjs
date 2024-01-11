@@ -1,5 +1,5 @@
-// import TvShowList from "@/components/tvShow/TvShowList";
-// import React from "react";
+import TvShowList from "@/components/tvShow/TvShowList";
+import React from "react";
 
 const tvShow = () => {
   return (
