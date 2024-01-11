@@ -1,14 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  async rewrites() {
-    return [
-      {
-        source: "/Movies",
-        destination: "/movies",
-        permanent: true,
-      },
-    ];
-  },
   images: {
     domains: [
       "cdn.iconscout.com",
