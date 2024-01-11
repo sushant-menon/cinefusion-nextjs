@@ -1,10 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  async redirects() {
+  async rewrites() {
     return [
       {
-        source: "/Movies/",
-        destination: "/movies/",
+        source: "/Movies",
+        destination: "/movies",
         permanent: true,
       },
     ];
