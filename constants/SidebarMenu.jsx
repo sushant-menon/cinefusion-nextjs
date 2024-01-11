@@ -5,7 +5,7 @@ export const SidebarMenu = [
     path: "/",
   },
   {
-    title: "movies",
+    title: "Movies",
     path: "/movies",
   },
   {
