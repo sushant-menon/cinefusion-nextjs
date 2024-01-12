@@ -1,13 +1,13 @@
 "use client";
-import Navbar from "@/components/navbar/Navbar";
+import Navbar from "@/app/components/navbar/Navbar";
 import "./globals.css";
 import { Inter } from "next/font/google";
-import Sidebar from "@/components/sidebar/Sidebar";
+import Sidebar from "@/app/components/sidebar/Sidebar";
 import { Provider } from "react-redux";
 import store from "@/store";
 import "@radix-ui/themes/styles.css";
 import { Theme } from "@radix-ui/themes";
-import Footer from "@/components/footer/Footer";
+import Footer from "@/app/components/footer/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 

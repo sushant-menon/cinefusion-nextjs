@@ -1,6 +1,6 @@
 "use client";
 
-import MovieDetails from "@/components/movie/MovieDetails";
+import MovieDetails from "@/app/components/movie/MovieDetails";
 
 const getDetailsOfParticularMovie = async props => {
   const data = await fetch(

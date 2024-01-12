@@ -1,5 +1,5 @@
 "use client";
-import ForTrial from "@/components/trial/ForTrial";
+import ForTrial from "@/app/components/trial/ForTrial";
 import { closeSidebar } from "@/slice/appSlice";
 import { Switch } from "@radix-ui/themes";
 import Image from "next/image";

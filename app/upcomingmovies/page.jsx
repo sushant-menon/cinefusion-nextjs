@@ -1,6 +1,6 @@
 "use client";
-import MovieList from "@/components/movie/MovieList";
-import UpcomingMovies from "@/components/movie/UpcomingMovies";
+import MovieList from "@/app/components/movie/MovieList";
+import UpcomingMovies from "@/app/components/movie/UpcomingMovies";
 import React from "react";
 
 const upComingMovies = () => {

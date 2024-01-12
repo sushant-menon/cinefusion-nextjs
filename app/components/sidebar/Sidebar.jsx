@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { SidebarMenu } from "../../constants/SidebarMenu";
+import { SidebarMenu } from "../../../constants/SidebarMenu";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 

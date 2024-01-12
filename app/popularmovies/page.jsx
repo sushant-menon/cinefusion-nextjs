@@ -1,4 +1,4 @@
-import PopularMovies from "@/components/movie/PopularMovies";
+import PopularMovies from "@/app/components/movie/PopularMovies";
 import React from "react";
 
 const popularmovies = () => {
