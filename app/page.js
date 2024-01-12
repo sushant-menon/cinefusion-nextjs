@@ -174,7 +174,7 @@ export default function Home() {
                 </Link>
                 <Link
                   className="border-2 rounded-lg px-3 py-2 font-bold text-lg w-1/2 mx-auto lg:w-1/2 text-white hover:bg-gray-900"
-                  href="tvShows"
+                  href="tvshows"
                 >
                   Tv
                 </Link>
