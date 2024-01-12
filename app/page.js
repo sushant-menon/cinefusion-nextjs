@@ -92,7 +92,11 @@ export default function Home() {
   });
 
   if (loading) {
-    return <DummyHomePage />;
+    return (
+      <div className="animate-pulse animate-duration-2s animate-delay-1s">
+        <DummyHomePage />
+      </div>
+    );
   }
 
   if (error) {

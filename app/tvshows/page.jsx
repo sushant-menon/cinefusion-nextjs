@@ -3,7 +3,7 @@ import React from "react";
 
 const tvShow = () => {
   return (
-    <div className="h-[90vh] scrollbar-thin  scrollbar-track-gray-800 scrollbar-thumb-rounded-md overflow-auto overflow-x-hidden mx-1 mt-8 flex flex-wrap justify-around">
+    <div className="h-[150vh] overflow-auto overflow-x-hidden mx-0 pt-8 flex flex-wrap justify-around pl-2">
       <TvShowList />
     </div>
     // <div>Hello</div>

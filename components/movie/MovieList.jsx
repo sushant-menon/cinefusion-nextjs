@@ -76,7 +76,7 @@ const MovieList = () => {
         </button>
         {toggle && (
           <div
-            className="absolute bg-black text-white rounded-xl border p-3 text-lg z-10 w-36 lg;w-72"
+            className="absolute bg-black text-white rounded-xl border p-3 text-lg z-10 w-36 lg:w-72"
             style={{ top: "100%", left: "" }}
           >
             <UpTriangle size={10} />
