@@ -1,20 +1,20 @@
 "use client";
 export const MovieCategoryList = [
   {
-    title: "Home",
+    title: "Now Playing",
     path: "/movies",
   },
   {
     title: "Top Rated Movies",
-    path: "/topRatedMovies",
+    path: "/topratedmovies",
   },
   {
     title: "Popular Movies",
-    path: "/popularMovies",
+    path: "/popularmovies",
   },
   {
     title: "Upcoming Movies",
-    path: "/upcomingMovies",
+    path: "/upcomingmovies",
   },
 ];
 

@@ -48,7 +48,7 @@ const MovieList = () => {
       setLoading(true);
       await new Promise(resolve => setTimeout(resolve, 800));
       const data = await fetch(
-        `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.NEXT_PUBLIC_MOVIE_API_KEY}&page=${pageChangeValue}`
+        `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.NEXT_PUBLIC_MOVIE_API_KEY}&page=${pageChangeValue}`
       );
       const json = await data.json();
       setMovie(json.results);
@@ -65,7 +65,7 @@ const MovieList = () => {
   return (
     <>
       <div className="text-white lg:text-5xl text-2xl font-semibold mb-4">
-        Movies
+        Now Playing
       </div>
       <div className="relative">
         <button
@@ -84,7 +84,7 @@ const MovieList = () => {
               {MovieCategoryList.map(item => (
                 <li
                   className={`p-2 ${
-                    item.title === "Home"
+                    item.title === "Now Playing"
                       ? "bg-blue-400 text-gray-900 font-bold"
                       : "hover:bg-blue-500 hover:text-white"
                   } rounded`}
