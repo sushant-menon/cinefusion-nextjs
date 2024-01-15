@@ -1,5 +1,5 @@
 "use client";
-import ForTrial from "@/app/components/trial/ForTrial";
+import HomeApiDummy from "@/app/components/homeapidummy/HomeApiDummy";
 import { closeSidebar } from "@/slice/appSlice";
 import { Switch } from "@radix-ui/themes";
 import Image from "next/image";
@@ -36,7 +36,7 @@ export default function Home() {
 
   const apiUrl = `https://api.themoviedb.org/3/trending/${category.name}/${currentCategory.name}?language=en-US&api_key=${process.env.NEXT_PUBLIC_MOVIE_API_KEY}`;
 
-  const { data, loading, error } = ForTrial(apiUrl);
+  const { data, loading, error } = HomeApiDummy(apiUrl);
   const { results } = data;
 
   const changeCategoryButton = () => {
@@ -237,7 +237,7 @@ const CarouselComp = ({
 
 const DummyHomePage = () => {
   return (
-    <div className="flex flex-col justify-center items-center mx-auto mt-7">
+    <div className="flex flex-col justify-center items-center mx-auto pt-7">
       <div className="w-[300px] h-[300px] bg-gray-300 rounded-xl lg:h-[650px] lg:w-[1200px]"></div>
       <h2 className="bg-gray-300 mt-10 rounded-xl w-56 h-6"></h2>
       <div className="mt-6 flex space-x-7 justify-evenly">

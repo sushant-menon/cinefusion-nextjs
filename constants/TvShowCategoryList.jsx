@@ -2,7 +2,7 @@
 export const TvShowCategoryList = [
   {
     title: "Airing Today",
-    path: "/airingtodaytvshows",
+    path: "/tvshows",
   },
   {
     title: "On The Air",

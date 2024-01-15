@@ -67,7 +67,7 @@ const TvShowList = () => {
   return (
     <>
       <div className="text-white lg:text-5xl text-2xl font-semibold mb-4">
-        Airing Today
+        Tv Shows
       </div>
       <div className="relative">
         <button
