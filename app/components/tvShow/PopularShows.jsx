@@ -6,6 +6,8 @@ import { closeSidebar } from "@/slice/appSlice";
 import Link from "next/link";
 import { TvShowCategoryList } from "@/constants/TvShowCategoryList";
 import Loading from "./loading";
+import TvApiDummy from "@/app/components/tvapidummy/TvApiDummy";
+import ShimmerTvShow from "./ShimmerTvShow";
 
 const UpTriangle = ({ size }) => {
   const borderStyle = "1px solid rgb(209,213,219) ";
@@ -27,10 +29,16 @@ const UpTriangle = ({ size }) => {
 };
 
 const PopularShows = () => {
-  const [popShows, setPopShows] = useState([]);
+  // const [popShows, setPopShows] = useState([]);
   const [toggle, setToggle] = useState(false);
   const [pageChangeValue, setPageChangeValue] = useState(1);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
+
+  const apiUrl = `https://api.themoviedb.org/3/tv/popular?api_key=${process.env.NEXT_PUBLIC_MOVIE_API_KEY}&page=${pageChangeValue}`;
+
+  const { data, loading, error } = TvApiDummy(apiUrl);
+
+  const { results } = data;
 
   const previousPage = () => {
     if (pageChangeValue > 1) {
@@ -42,26 +50,42 @@ const PopularShows = () => {
     setPageChangeValue(p => p + 1);
   };
 
-  const PopularTvShows = async () => {
-    try {
-      setLoading(true);
-      await new Promise(resolve => setTimeout(resolve, 800));
-      const data = await fetch(
-        `https://api.themoviedb.org/3/tv/popular?api_key=${process.env.NEXT_PUBLIC_MOVIE_API_KEY}&page=${pageChangeValue}`
-      );
-      const json = await data.json();
-      setPopShows(json.results);
-    } finally {
-      setLoading(false);
-    }
-  };
+  // const PopularTvShows = async () => {
+  //   try {
+  //     setLoading(true);
+  //     await new Promise(resolve => setTimeout(resolve, 800));
+  //     const data = await fetch(
+  //       `https://api.themoviedb.org/3/tv/popular?api_key=${process.env.NEXT_PUBLIC_MOVIE_API_KEY}&page=${pageChangeValue}`
+  //     );
+  //     const json = await data.json();
+  //     setPopShows(json.results);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    PopularTvShows();
     dispatch(closeSidebar());
-  }, [pageChangeValue]);
+  }, []);
+
+  // useEffect(() => {
+  //   PopularTvShows();
+  //   dispatch(closeSidebar());
+  // }, [pageChangeValue]);
+
+  if (loading) {
+    return (
+      <div className="animate-pulse animate-duration-2s animate-delay-1s text-white">
+        <ShimmerTvShow />
+      </div>
+    );
+  }
+
+  if (error) {
+    return <p>Error: {error.message}</p>;
+  }
 
   return (
     <>
@@ -101,7 +125,7 @@ const PopularShows = () => {
 
       <div className="mx-auto">
         <div className="flex flex-wrap gap-4 items-center justify-center">
-          {popShows.map(item => {
+          {results.map(item => {
             return <ShowCard item={item} key={item.id} loading={loading} />;
           })}
         </div>
@@ -149,30 +173,24 @@ const PopularShows = () => {
 const ShowCard = ({ item, loading }) => {
   return (
     <>
-      {!loading ? (
-        <Link href={`/tvshows/${item.id}`}>
-          <div className="relative group cursor-pointer">
-            <Image
-              className="rounded-3xl"
-              src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
-              width={300}
-              height={300}
-              alt={item.overview}
-            />
+      <Link href={`/tvshows/${item.id}`}>
+        <div className="relative group cursor-pointer">
+          <Image
+            className="rounded-3xl"
+            src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+            width={300}
+            height={300}
+            alt={item.overview}
+          />
 
-            <div className="absolute inset-0 hidden group-hover:flex group-hover:items-end group-hover:justify-center bg-white/75 bg-opacity-50 text-black text-base font-bold text-center p-4 group-hover:rounded-2xl">
-              <div className="flex flex-col h-full justify-around ">
-                <span className="text-3xl">{item.original_name}</span>
-                <span className="line-clamp-6">{item.overview}</span>
-              </div>
+          <div className="absolute inset-0 hidden group-hover:flex group-hover:items-end group-hover:justify-center bg-white/75 bg-opacity-50 text-black text-base font-bold text-center p-4 group-hover:rounded-2xl">
+            <div className="flex flex-col h-full justify-around ">
+              <span className="text-3xl">{item.original_name}</span>
+              <span className="line-clamp-6">{item.overview}</span>
             </div>
           </div>
-        </Link>
-      ) : (
-        <div>
-          <Loading />
         </div>
-      )}
+      </Link>
     </>
   );
 };

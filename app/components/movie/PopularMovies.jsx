@@ -7,6 +7,8 @@ import Link from "next/link";
 import Loading from "./loading";
 import { useDispatch } from "react-redux";
 import { closeSidebar } from "@/slice/appSlice";
+import MoviesApiDummy from "@/app/components/moviesapidummy/MoviesApiDummy.jsx";
+import ShimmerMovie from "./ShimmerMovie";
 
 const UpTriangle = ({ size }) => {
   const borderStyle = "1px solid rgb(209,213,219) ";
@@ -28,12 +30,22 @@ const UpTriangle = ({ size }) => {
 };
 
 const PopularMovies = () => {
-  const [popularMoviesList, setPopularMoviesList] = useState([]);
+  // const [popularMoviesList, setPopularMoviesList] = useState([]);
   const [toggle, setToggle] = useState(false);
   const [pageChangeValue, setPageChangeValue] = useState(1);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
+
+  const apiUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_MOVIE_API_KEY}&page=${pageChangeValue}`;
+
+  const { data, loading, error } = MoviesApiDummy(apiUrl);
+
+  const { results } = data;
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(closeSidebar());
+  }, []);
 
   const previousPage = () => {
     if (pageChangeValue > 1) {
@@ -45,24 +57,36 @@ const PopularMovies = () => {
     setPageChangeValue(p => p + 1);
   };
 
-  const popularMovies = async () => {
-    try {
-      setLoading(true);
-      await new Promise(resolve => setTimeout(resolve, 800));
-      const data = await fetch(
-        `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_MOVIE_API_KEY}&page=${pageChangeValue}`
-      );
-      const json = await data.json();
-      setPopularMoviesList(json.results);
-    } finally {
-      setLoading(false);
-    }
-  };
+  // const popularMovies = async () => {
+  //   try {
+  //     setLoading(true);
+  //     await new Promise(resolve => setTimeout(resolve, 800));
+  //     const data = await fetch(
+  //       `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_MOVIE_API_KEY}&page=${pageChangeValue}`
+  //     );
+  //     const json = await data.json();
+  //     setPopularMoviesList(json.results);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
-  useEffect(() => {
-    popularMovies();
-    dispatch(closeSidebar());
-  }, [pageChangeValue]);
+  // useEffect(() => {
+  //   popularMovies();
+  //   dispatch(closeSidebar());
+  // }, [pageChangeValue]);
+
+  if (loading) {
+    return (
+      <div className="animate-pulse animate-duration-2s animate-delay-1s text-white">
+        <ShimmerMovie />
+      </div>
+    );
+  }
+
+  if (error) {
+    return <p>Error: {error.message}</p>;
+  }
 
   return (
     <>
@@ -102,7 +126,7 @@ const PopularMovies = () => {
       </div>
       <div className="w-full mx-auto">
         <div className="flex flex-wrap gap-2 justify-center items-center">
-          {popularMoviesList.map(item => {
+          {results.map(item => {
             return (
               <PopularMovieShowCard
                 item={item}
@@ -157,30 +181,24 @@ const PopularMovies = () => {
 const PopularMovieShowCard = ({ item, loading }) => {
   return (
     <>
-      {!loading ? (
-        <Link href={`/movies/${item.id}`}>
-          <div className="relative group cursor-pointer">
-            <Image
-              className="rounded-3xl"
-              src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
-              width={300}
-              height={300}
-              alt={item.title}
-            />
+      <Link href={`/movies/${item.id}`}>
+        <div className="relative group cursor-pointer">
+          <Image
+            className="rounded-3xl"
+            src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+            width={300}
+            height={300}
+            alt={item.title}
+          />
 
-            <div className="absolute inset-0 hidden group-hover:flex group-hover:items-end group-hover:justify-center bg-white/75 bg-opacity-50 text-black text-base font-bold text-center p-4 group-hover:rounded-2xl">
-              <div className="flex flex-col h-full justify-around ">
-                <span className="text-3xl">{item.original_title}</span>
-                <span className="line-clamp-6">{item.overview}</span>
-              </div>
+          <div className="absolute inset-0 hidden group-hover:flex group-hover:items-end group-hover:justify-center bg-white/75 bg-opacity-50 text-black text-base font-bold text-center p-4 group-hover:rounded-2xl">
+            <div className="flex flex-col h-full justify-around ">
+              <span className="text-3xl">{item.original_title}</span>
+              <span className="line-clamp-6">{item.overview}</span>
             </div>
           </div>
-        </Link>
-      ) : (
-        <div>
-          <Loading />
         </div>
-      )}
+      </Link>
     </>
   );
 };

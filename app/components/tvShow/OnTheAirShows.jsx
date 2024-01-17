@@ -6,6 +6,8 @@ import { closeSidebar } from "@/slice/appSlice";
 import Link from "next/link";
 import { TvShowCategoryList } from "@/constants/TvShowCategoryList";
 import Loading from "./loading";
+import TvApiDummy from "@/app/components/tvapidummy/TvApiDummy";
+import ShimmerTvShow from "./ShimmerTvShow";
 
 const UpTriangle = ({ size }) => {
   const borderStyle = "1px solid rgb(209,213,219) ";
@@ -27,10 +29,16 @@ const UpTriangle = ({ size }) => {
 };
 
 const OnTheAirShows = () => {
-  const [onAirTv, setOnAirTvShows] = useState([]);
+  // const [onAirTv, setOnAirTvShows] = useState([]);
   const [toggle, setToggle] = useState(false);
   const [pageChangeValue, setPageChangeValue] = useState(1);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
+
+  const apiUrl = `https://api.themoviedb.org/3/tv/on_the_air?api_key=${process.env.NEXT_PUBLIC_MOVIE_API_KEY}&page=${pageChangeValue}`;
+
+  const { data, loading, error } = TvApiDummy(apiUrl);
+
+  const { results } = data;
 
   const previousPage = () => {
     if (pageChangeValue > 1) {
@@ -42,26 +50,42 @@ const OnTheAirShows = () => {
     setPageChangeValue(p => p + 1);
   };
 
-  const onAirTvShows = async () => {
-    try {
-      setLoading(true);
-      await new Promise(resolve => setTimeout(resolve, 800));
-      const data = await fetch(
-        `https://api.themoviedb.org/3/tv/on_the_air?api_key=${process.env.NEXT_PUBLIC_MOVIE_API_KEY}&page=${pageChangeValue}`
-      );
-      const json = await data.json();
-      setOnAirTvShows(json.results);
-    } finally {
-      setLoading(false);
-    }
-  };
+  // const onAirTvShows = async () => {
+  //   try {
+  //     setLoading(true);
+  //     await new Promise(resolve => setTimeout(resolve, 800));
+  //     const data = await fetch(
+  //       `https://api.themoviedb.org/3/tv/on_the_air?api_key=${process.env.NEXT_PUBLIC_MOVIE_API_KEY}&page=${pageChangeValue}`
+  //     );
+  //     const json = await data.json();
+  //     setOnAirTvShows(json.results);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    onAirTvShows();
     dispatch(closeSidebar());
-  }, [pageChangeValue]);
+  }, []);
+
+  // useEffect(() => {
+  //   onAirTvShows();
+  //   dispatch(closeSidebar());
+  // }, [pageChangeValue]);
+
+  if (loading) {
+    return (
+      <div className="animate-pulse animate-duration-2s animate-delay-1s text-white">
+        <ShimmerTvShow />
+      </div>
+    );
+  }
+
+  if (error) {
+    return <p>Error: {error.message}</p>;
+  }
 
   return (
     <>
@@ -101,7 +125,7 @@ const OnTheAirShows = () => {
 
       <div className="mx-auto">
         <div className="flex flex-wrap gap-4 items-center justify-center">
-          {onAirTv.map(item => {
+          {results.map(item => {
             return <ShowCard item={item} key={item.id} loading={loading} />;
           })}
         </div>
