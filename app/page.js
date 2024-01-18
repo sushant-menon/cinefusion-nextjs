@@ -54,7 +54,7 @@ export default function Home() {
     if (active < results.length - 1) {
       setTimeout(() => {
         setActive(active + 1);
-      }, 1000);
+      }, 600);
     }
   };
 
@@ -133,29 +133,38 @@ export default function Home() {
                 <h2 className="font-bold text-2xl ">{`What's trending ?`} </h2>
                 <div className="flex mt-3 justify-center items-center space-x-10">
                   <div className="flex space-x-2 items-center">
-                    <p className="font-bold text-lg">Day</p>
-                    <Switch
-                      className="bg-gray-900"
-                      size="3"
-                      color="black"
-                      highContrast
-                      value={currentCategory}
-                      onCheckedChange={changeCategoryButton}
-                    />
-                    <p className="font-bold text-lg">Week</p>
+                    <p className="text-sm font-medium lg:text-lg lg:font-bold text-gray-900 dark:text-gray-300">
+                      Day
+                    </p>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                      <input
+                        onClick={changeCategoryButton}
+                        type="checkbox"
+                        value={currentCategory}
+                        class="sr-only peer"
+                      />
+                      <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                      <span class="ms-3 lg:text-lg lg:font-bold font-medium text-sm text-gray-900 dark:text-gray-300">
+                        Week
+                      </span>
+                    </label>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <p className="font-bold text-lg">Tv</p>
-                    {/* Switch between tv and movies */}
-                    <Switch
-                      className="bg-gray-900"
-                      size="3"
-                      color="black"
-                      highContrast
-                      value={category}
-                      onCheckedChange={changeCategoryAllTogether}
-                    />
-                    <p className="font-bold text-lg">Movies</p>
+                    <p className="text-sm font-medium lg:text-lg lg:font-bold text-gray-900 dark:text-gray-300">
+                      Tv
+                    </p>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                      <input
+                        onClick={changeCategoryAllTogether}
+                        type="checkbox"
+                        value={category}
+                        class="sr-only peer"
+                      />
+                      <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                      <span class="ms-3 lg:text-lg lg:font-bold font-medium text-sm text-gray-900 dark:text-gray-300">
+                        Movies
+                      </span>
+                    </label>
                   </div>
                 </div>
               </div>
