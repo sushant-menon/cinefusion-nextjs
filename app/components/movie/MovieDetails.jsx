@@ -42,7 +42,7 @@ const MovieDetails = ({ data }) => {
       const youtubeVideoId = trailer.key;
       return (
         <iframe
-          className="w-[1450px] h-[788px] transform translate-y-48 -translate-x-8"
+          className="lg:w-[1450px] lg:h-[788px] lg:transform lg:translate-y-48 lg:-translate-x-8 w-96 h-52"
           src={`https://www.youtube.com/embed/${youtubeVideoId}`}
           title="YouTube video player"
           frameBorder="0"
@@ -52,9 +52,10 @@ const MovieDetails = ({ data }) => {
       );
     } else {
       const key = data.videos.results[0].key;
+      // change the width and height and adjust the video container
       return (
         <iframe
-          className=" w-[1450px] h-[788px] transform translate-y-48 -translate-x-8"
+          className="lg:w-[1450px] lg:h-[788px] lg:transform lg:translate-y-48 lg:-translate-x-8 w-96 h-52 transform -translate-y-[220px] rounded-md -translate-x-1"
           src={`https://www.youtube.com/embed/${key}`}
           title="YouTube video player"
           frameBorder="0"
@@ -79,14 +80,14 @@ const MovieDetails = ({ data }) => {
           height={300}
           alt={data.title}
         />
-        <div className="lg:absolute lg:bottom-0 lg:mb-20 lg:ml-8">
+        <div className="lg:absolute lg:bottom-0 flex lg:flex-col lg:mb-24 lg:ml-8 mt-3 lg:mt-0 flex-row-reverse justify-center lg:justify-start lg:items-start items-center">
           <h2 className="lg:text-5xl text-lg font-extrabold text-white text-center">
             {title}
           </h2>
           {showTrailer ? renderMovieTrailer() : null}
           <button
             onClick={handleWatchTrailer}
-            className="border border-green-200 lg:px-5 lg:w-64 w-9 h-9 lg:py-5 p-2 rounded-lg bg-red-600 hover:bg-red-500 text-white lg:mt-8 font-extrabold lg:text-xl flex items-center"
+            className="lg:border border-green-200 lg:px-5 lg:w-64 h-2 py-3 lg:py-7 p-2 rounded-lg bg-red-600 hover:bg-red-500 text-white lg:mt-8 font-extrabold lg:text-xl flex items-center mr-5 lg:mr-0"
           >
             {/* <img className="mr-4" src="/youtube.svg" /> */}
             <Image
@@ -165,7 +166,7 @@ const CreditSection = ({ credits }) => {
     setVisibleCards(p => p + 10);
   };
   const { crew, cast } = credits;
-  console.log(crew, cast);
+  // console.log(crew, cast);
   return (
     <>
       <div className="mt-16 w-full">
