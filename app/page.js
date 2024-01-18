@@ -168,13 +168,13 @@ export default function Home() {
               <div className="flex-col flex mt-4 lg:flex-row lg:w-96 lg:justify-between lg:items-center">
                 <Link
                   className="border-2 rounded-lg px-3 py-2 font-bold text-lg text-white w-1/2 mx-auto lg:w-1/2 lg:mr-4 mb-3 lg:mb-0 hover:bg-gray-900"
-                  href="movies"
+                  href="/movies"
                 >
                   Movies
                 </Link>
                 <Link
                   className="border-2 rounded-lg px-3 py-2 font-bold text-lg w-1/2 mx-auto lg:w-1/2 text-white hover:bg-gray-900"
-                  href="tvshows"
+                  href="/tvshows"
                 >
                   Tv
                 </Link>

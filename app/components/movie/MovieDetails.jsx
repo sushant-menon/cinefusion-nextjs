@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 const MovieDetails = ({ data }) => {
-  console.log(data);
+  // console.log(data);
   const {
     title,
     backdrop_path,
@@ -72,35 +72,31 @@ const MovieDetails = ({ data }) => {
   return (
     <>
       <div className="relative">
-        {/* <img
-          className="w-[1450px] h-[768px]"
-          src={`https://image.tmdb.org/t/p/w1280${backdrop_path}`}
-          alt={data.title}
-        /> */}
-
         <Image
           src={`https://image.tmdb.org/t/p/w1280${backdrop_path}`}
-          className="w-[1450px] h-[768px]"
+          className="lg:w-[1450px] lg:h-[768px] w-96 h-52 rounded-md lg:rounded-none"
           width={300}
           height={300}
           alt={data.title}
         />
-        <div className="absolute bottom-0 mb-20 ml-8">
-          <h2 className="text-5xl font-extrabold text-white">{title}</h2>
+        <div className="lg:absolute lg:bottom-0 lg:mb-20 lg:ml-8">
+          <h2 className="lg:text-5xl text-lg font-extrabold text-white text-center">
+            {title}
+          </h2>
           {showTrailer ? renderMovieTrailer() : null}
           <button
             onClick={handleWatchTrailer}
-            className="border border-green-200 px-5 w-64 py-4 rounded-lg bg-red-600 hover:bg-red-500 text-white mt-8 font-extrabold text-xl flex items-center"
+            className="border border-green-200 lg:px-5 lg:w-64 w-9 h-9 lg:py-5 p-2 rounded-lg bg-red-600 hover:bg-red-500 text-white lg:mt-8 font-extrabold lg:text-xl flex items-center"
           >
             {/* <img className="mr-4" src="/youtube.svg" /> */}
             <Image
-              className="mr-4"
+              className="mr-0 lg:mr-4"
               src="/youtube.svg"
               width={25}
               height={37}
               alt="yt-img"
             />
-            Watch Trailer
+            <span className="hidden lg:flex"> Watch Trailer</span>
           </button>
         </div>
         {showTrailer ? (

@@ -15,8 +15,8 @@ const page = async props => {
   const data = await getDetailsOfParticularMovie(id);
 
   return (
-    <div className="h-[90vh] mt-8">
-      <div className="max-h-full overflow-y-auto scrollbar-thin scrollbar-track-gray-800 scrollbar-thumb-rounded-md p-10">
+    <div className="h-[90vh] pt-8">
+      <div className="max-h-full overflow-y-auto scrollbar-thin scrollbar-track-gray-800 scrollbar-thumb-rounded-md lg:p-10 py-3 px-4">
         <MovieDetails data={data} />
       </div>
     </div>
