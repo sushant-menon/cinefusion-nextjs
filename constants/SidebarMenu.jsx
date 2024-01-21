@@ -21,5 +21,3 @@ export const SidebarMenu = [
     path: "/trial",
   },
 ];
-
-//updated

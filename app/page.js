@@ -104,114 +104,170 @@ export default function Home() {
   }
 
   return (
-    <div className="flex justify-center items-center max-h-screen relative">
-      <div className="absolute top-0 left-0 w-full h-full bg-black opacity-75"></div>
-      <div>
-        <Image
-          className="w-screen h-screen object-cover"
-          width={800}
-          height={800}
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/563192ea-ac0e-4906-a865-ba9899ffafad/6b2842d1-2339-4f08-84f6-148e9fcbe01b/IN-en-20231218-popsignuptwoweeks-perspective_alpha_website_large.jpg"
-          alt="bg-image-netflix's"
-          priority={true}
-        />
-      </div>
-      <div className="absolute w-screen h-screen">
-        {/* Carousal */}
-        <div className="px-14 py-8 md:px-14 md:py-4 flex flex-col md:flex-row items-center justify-start md:justify-center md:items-start min-h-screen">
-          <div className=" relative w-full rounded-md md:w-[1200px] text-center h-[300px] md:h-[650px]">
-            {results.map((item, i) => {
-              return (
-                <CarouselComp {...item} key={item.id} active={i === active} />
-              );
-            })}
+    <>
+      <div className="flex justify-center items-center max-h-screen relative">
+        {/* Mobile screen trending and show button */}
+        <div className="text-3xl text-white mt-8 lg:mt-8 lg:hidden z-20 justify-center items-center absolute transform -translate-y-[370px]">
+          <div className="flex flex-col">
+            <div className="flex mt-3 justify-center items-center space-x-10">
+              <div className="flex space-x-2 items-center">
+                <p className="text-sm font-medium lg:text-lg lg:font-bold text-gray-900 dark:text-gray-300">
+                  Day
+                </p>
+                <Switch
+                  className="bg-blue-100"
+                  size="1"
+                  color="black"
+                  highContrast
+                  value={currentCategory}
+                  onCheckedChange={changeCategoryButton}
+                />
+                <p className="text-sm font-medium lg:text-lg lg:font-bold text-gray-900 dark:text-gray-300">
+                  Week
+                </p>
+              </div>
+              <div className="flex items-center space-x-2">
+                <p className="text-sm font-medium lg:text-lg lg:font-bold text-gray-900 dark:text-gray-300">
+                  Tv
+                </p>
+                {/* Switch between tv and movies */}
+                <Switch
+                  className="bg-blue-100"
+                  size="1"
+                  color="black"
+                  highContrast
+                  value={category}
+                  onCheckedChange={changeCategoryAllTogether}
+                />
+                <p className="text-sm font-medium lg:text-lg lg:font-bold text-gray-900 dark:text-gray-300">
+                  Movies
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-            {/* Trending Switch */}
+        {/* Explore page on mobile screen */}
 
-            <div className="text-3xl text-white mt-8 lg:mt-8">
-              <div className="flex flex-col">
-                <h2 className="font-bold text-2xl ">{`What's trending ?`} </h2>
-                <div className="flex mt-3 justify-center items-center space-x-10">
-                  <div className="flex space-x-2 items-center">
-                    <p className="text-sm font-medium lg:text-lg lg:font-bold text-gray-900 dark:text-gray-300">
-                      Day
-                    </p>
-                    <label className="relative inline-flex items-center cursor-pointer">
-                      <input
-                        onClick={changeCategoryButton}
-                        onTouchStart={changeCategoryButton}
-                        onTouchEnd={changeCategoryButton}
-                        type="checkbox"
+        <div className="mt-56 lg:hidden justify-center items-center absolute z-20">
+          <h2 className="text-lg font-extrabold text-white">
+            Explore Categories
+          </h2>
+          <div className="flex-col flex mt-4 lg:justify-between lg:items-center">
+            <Link
+              className="border-2 rounded-lg px-2 py-2 font-bold text-sm text-center text-white w-1/2 mx-auto mb-3 hover:bg-blue-100"
+              href="/movies"
+            >
+              Movies
+            </Link>
+            <Link
+              className="border-2 rounded-lg px-2 py-2 font-bold text-sm text-center text-white w-1/2 mx-auto mb-3 hover:bg-blue-100"
+              href="/tvshows"
+            >
+              Tv
+            </Link>
+          </div>
+        </div>
+
+        <div className="absolute top-0 left-0 w-full h-full bg-black opacity-75"></div>
+        <div>
+          <Image
+            className="w-screen h-screen object-cover"
+            width={800}
+            height={800}
+            src="https://assets.nflxext.com/ffe/siteui/vlv3/563192ea-ac0e-4906-a865-ba9899ffafad/6b2842d1-2339-4f08-84f6-148e9fcbe01b/IN-en-20231218-popsignuptwoweeks-perspective_alpha_website_large.jpg"
+            alt="bg-image-netflix's"
+            priority={true}
+          />
+        </div>
+        <div className="absolute w-screen h-screen">
+          {/* Carousal */}
+          <div className="px-14 py-14 md:px-14 lg:py-7 flex flex-col md:flex-row items-center justify-start md:justify-center md:items-start">
+            <div className="w-full rounded-md md:w-[1200px] text-center h-[300px] md:h-[650px]">
+              {results.map((item, i) => {
+                return (
+                  <CarouselComp {...item} key={item.id} active={i === active} />
+                );
+              })}
+
+              {/* Trending Switch Large Screen */}
+
+              <div className="text-3xl text-white mt-8 lg:mt-8 hidden lg:flex justify-center items-center">
+                <div className="flex flex-col">
+                  <h2 className="font-bold text-2xl ">
+                    {`What's trending ?`}{" "}
+                  </h2>
+                  <div className="flex mt-3 justify-center items-center space-x-10">
+                    <div className="flex space-x-2 items-center">
+                      <p className="font-bold text-lg">Day</p>
+                      <Switch
+                        className="bg-blue-100"
+                        size="3"
+                        color="black"
+                        highContrast
                         value={currentCategory}
-                        className="sr-only peer"
+                        onCheckedChange={changeCategoryButton}
                       />
-                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                      <span className="ms-3 lg:text-lg lg:font-bold font-medium text-sm text-gray-900 dark:text-gray-300">
-                        Week
-                      </span>
-                    </label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <p className="text-sm font-medium lg:text-lg lg:font-bold text-gray-900 dark:text-gray-300">
-                      Tv
-                    </p>
-                    <label className="relative inline-flex items-center cursor-pointer">
-                      <input
-                        onClick={changeCategoryAllTogether}
-                        type="checkbox"
+                      <p className="font-bold text-lg">Week</p>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <p className="font-bold text-lg">Tv</p>
+                      {/* Switch between tv and movies */}
+                      <Switch
+                        className="bg-blue-100"
+                        size="3"
+                        color="black"
+                        highContrast
                         value={category}
-                        className="sr-only peer"
+                        onCheckedChange={changeCategoryAllTogether}
                       />
-                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                      <span className="ms-3 lg:text-lg lg:font-bold font-medium text-sm text-gray-900 dark:text-gray-300">
-                        Movies
-                      </span>
-                    </label>
+                      <p className="font-bold text-lg">Movies</p>
+                    </div>
                   </div>
+                </div>
+              </div>
+
+              {/* Explore page for large screen */}
+
+              <div className="lg:mt-24 hidden lg:flex lg:justify-evenly justify-center items-center">
+                <h2 className="text-3xl text-white">Explore Categories</h2>
+                <div className="flex-col flex mt-4 lg:flex-row lg:w-96 lg:justify-between lg:items-center">
+                  <Link
+                    className="border-2 rounded-lg px-3 py-2 font-bold text-lg text-white w-1/2 mx-auto lg:w-1/2 lg:mr-4 mb-3 lg:mb-0 hover:bg-gray-900"
+                    href="/movies"
+                  >
+                    Movies
+                  </Link>
+                  <Link
+                    className="border-2 rounded-lg px-3 py-2 font-bold text-lg w-1/2 mx-auto lg:w-1/2 text-white hover:bg-gray-900"
+                    href="/tvshows"
+                  >
+                    Tv
+                  </Link>
                 </div>
               </div>
             </div>
 
-            {/* Explore page */}
+            {/* controlling data button */}
 
-            <div className="mt-12 lg:mt-24 lg:flex lg:justify-evenly justify-center items-center">
-              <h2 className="text-3xl text-white">Explore Categories</h2>
-              <div className="flex-col flex mt-4 lg:flex-row lg:w-96 lg:justify-between lg:items-center">
-                <Link
-                  className="border-2 rounded-lg px-3 py-2 font-bold text-lg text-white w-1/2 mx-auto lg:w-1/2 lg:mr-4 mb-3 lg:mb-0 hover:bg-gray-900"
-                  href="/movies"
-                >
-                  Movies
-                </Link>
-                <Link
-                  className="border-2 rounded-lg px-3 py-2 font-bold text-lg w-1/2 mx-auto lg:w-1/2 text-white hover:bg-gray-900"
-                  href="/tvshows"
-                >
-                  Tv
-                </Link>
-              </div>
+            <div className="absolute flex justify-evenly items-center h-3/4 md:h-1/2 lg:justify-between lg:w-[1500px] w-[500px] mt-4 lg:mt-0">
+              <button
+                onClick={onPrev}
+                className="text-4xl text-white bg-black rounded-full px-3 py-1 lg:px-5 lg:py-2 hover:bg-gray-500"
+              >
+                &lt;
+              </button>
+              <button
+                onClick={onNext}
+                className="text-4xl text-white bg-black rounded-full px-3 py-1 lg:px-5 lg:py-2 hover:bg-gray-500"
+              >
+                &gt;
+              </button>
             </div>
-          </div>
-
-          {/* controlling data button */}
-
-          <div className="absolute flex justify-evenly items-center h-3/4 md:h-1/2 lg:justify-between lg:w-[1500px] w-[500px] mt-4 lg:mt-0">
-            <button
-              onClick={onPrev}
-              className="text-4xl text-white bg-black rounded-full px-3 py-1 lg:px-5 lg:py-2 hover:bg-gray-500"
-            >
-              &lt;
-            </button>
-            <button
-              onClick={onNext}
-              className="text-4xl text-white bg-black rounded-full px-3 py-1 lg:px-5 lg:py-2 hover:bg-gray-500"
-            >
-              &gt;
-            </button>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
