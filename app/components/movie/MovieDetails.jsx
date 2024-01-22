@@ -40,9 +40,10 @@ const MovieDetails = ({ data }) => {
 
     if (trailer) {
       const youtubeVideoId = trailer.key;
+
       return (
         <iframe
-          className="lg:w-[1450px] lg:h-[788px] lg:transform lg:translate-y-48 lg:-translate-x-8 w-96 h-52"
+          className="lg:w-[1450px] lg:h-[788px] lg:transform lg:-translate-x-8 lg:translate-y-48 w-96 h-52 rounded-md lg:rounded-none"
           src={`https://www.youtube.com/embed/${youtubeVideoId}`}
           title="YouTube video player"
           frameBorder="0"
@@ -72,7 +73,7 @@ const MovieDetails = ({ data }) => {
 
   return (
     <>
-      <div className="relative">
+      <div className="relative lg:w-[1500px]">
         <Image
           src={`https://image.tmdb.org/t/p/w1280${backdrop_path}`}
           className="lg:w-[1450px] lg:h-[768px] w-96 h-52 rounded-md lg:rounded-none"
@@ -103,20 +104,20 @@ const MovieDetails = ({ data }) => {
         {showTrailer ? (
           <button
             onClick={handleCancel}
-            className="absolute top-0 right-20 px-2 py-2 bg-red-600 rounded-full font-bold text-white cursor-pointer flex items-center"
+            className="absolute hidden right-0 top-0 px-2 py-2 bg-red-600 rounded-full font-bold text-white cursor-pointer lg:flex items-center"
           >
             {/* <img src="/x.svg" /> */}
             <Image src="/x.svg" alt="x-image" width={20} height={30} />
           </button>
         ) : null}
       </div>
-      <div className="flex justify-between items-center w-[1450px]">
+      <div className="flex justify-between items-center lg:w-[1450px] w-96">
         <div className="flex mt-10 items-center">
           <span className="flex gap-2">
             {genres.map(genre => {
               return (
                 <p
-                  className="border border-green-400 px-4 py-2 text-white bg-green-900 rounded-full"
+                  className="border border-green-400 lg:px-4 lg:py-2 px-2 py-1 text-white text-sm lg:text-lg bg-green-900 rounded-full"
                   key={genre.id}
                 >
                   {genre.name}
