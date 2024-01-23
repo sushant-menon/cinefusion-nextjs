@@ -1,3 +1,4 @@
+"use client";
 import { closeSidebar } from "@/slice/appSlice";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
@@ -73,24 +74,26 @@ const MovieDetails = ({ data }) => {
 
   return (
     <>
-      <div className="relative lg:w-[1500px]">
+      <div className="relative lg:w-[1500px] w-full">
+        <h2 className="flex mb-2 justify-center lg:hidden text-3xl font-extrabold text-white text-center">
+          {title}
+        </h2>
         <Image
           src={`https://image.tmdb.org/t/p/w1280${backdrop_path}`}
-          className="lg:w-[1450px] lg:h-[768px] w-96 h-52 rounded-md lg:rounded-none"
+          className="lg:w-[1450px] lg:h-[768px] w-full h-52 rounded-md lg:rounded-none"
           width={300}
           height={300}
           alt={data.title}
         />
         <div className="lg:absolute lg:bottom-0 flex lg:flex-col lg:mb-24 lg:ml-8 mt-3 lg:mt-0 flex-row-reverse justify-center lg:justify-start lg:items-start items-center">
-          <h2 className="lg:text-5xl text-lg font-extrabold text-white text-center">
+          <h2 className="lg:text-5xl text-lg font-extrabold text-white text-center hidden lg:flex">
             {title}
           </h2>
           {showTrailer ? renderMovieTrailer() : null}
           <button
             onClick={handleWatchTrailer}
-            className="lg:border border-green-200 lg:px-5 lg:w-64 h-2 py-3 lg:py-7 p-2 rounded-lg bg-red-600 hover:bg-red-500 text-white lg:mt-8 font-extrabold lg:text-xl flex items-center mr-5 lg:mr-0"
+            className="lg:border border-green-200 lg:px-5 lg:w-64 h-2 py-5 px-3 lg:py-7 p-2 rounded-2xl bg-red-600 hover:bg-red-500 text-white lg:mt-8 font-extrabold lg:text-xl flex items-center lg:mr-0"
           >
-            {/* <img className="mr-4" src="/youtube.svg" /> */}
             <Image
               className="mr-0 lg:mr-4"
               src="/youtube.svg"
@@ -111,7 +114,7 @@ const MovieDetails = ({ data }) => {
           </button>
         ) : null}
       </div>
-      <div className="flex justify-between items-center lg:w-[1450px] w-96">
+      <div className="flex justify-between items-center lg:w-[1450px] w-full">
         <div className="flex mt-10 items-center">
           <span className="flex gap-2">
             {genres.map(genre => {
@@ -127,31 +130,51 @@ const MovieDetails = ({ data }) => {
           </span>
         </div>
         <div className="mt-10 flex items-center">
-          <strong className="uppercase text-lg mr-2">Rating : </strong>
-          <span className="text-3xl mr-2">⭐️</span>
-          <p className="text-4xl font-bold text-white">{voteAverageRoundOff}</p>
+          <strong className="uppercase lg:text-lg mr-2 text-white text-sm">
+            Rating :
+          </strong>
+          <span className="lg:text-3xl mr-2 text-sm">⭐️</span>
+          <p className="lg:text-4xl text-sm font-bold text-white">
+            {voteAverageRoundOff}
+          </p>
         </div>
       </div>
-      <div className="flex justify-between items-center mt-2 w-[1450px]">
+      <div className="flex justify-between items-center mt-2 lg:w-[1450px] w-full">
         <div className="flex mt-7 items-center">
           <span className="flex gap-2">
-            <strong className="mr-2 text-lg uppercase">Status :</strong>
+            <strong className="mr-2 lg:text-lg text-sm text-white uppercase">
+              Status :
+            </strong>
           </span>
           {statusUpdate === "Released" ? (
-            <p className="text-xl text-green-800 font-extrabold">
+            <p className="lg:text-xl text-green-800 text-sm font-extrabold">
               {statusUpdate}
             </p>
           ) : (
             <p className="text-xl text-red-600">{statusUpdate}</p>
           )}
         </div>
-        <div className="mt-4 flex items-center">
-          <strong className="uppercase text-lg mr-2">Release Date :</strong>
-          <p className="text-base font-bold text-white">{release_date}</p>
+        <div className="mt-4 hidden lg:flex items-center">
+          <strong className="uppercase lg:text-lg mr-2 text-white text-sm">
+            Release Date :
+          </strong>
+          <p className="lg:text-base text-sm font-bold text-white">
+            {release_date}
+          </p>
+        </div>
+        <div className="mt-7 flex lg:hidden items-center">
+          <strong className="uppercase lg:text-lg mr-2 text-white text-sm">
+            Rel Date :
+          </strong>
+          <p className="lg:text-base text-sm font-bold text-white">
+            {release_date}
+          </p>
         </div>
       </div>
-      <div className="mt-8 w-[1450px] px-7">
-        <p className="line-clamp-1 text-lg text-white">{overview}</p>
+      <div className="mt-8 lg:w-[1450px] lg:96 lg:px-7 px-2">
+        <p className="lg:line-clamp-1 line-clamp-2 lg:text-lg text-sm text-white text-center">
+          {overview}
+        </p>
       </div>
       <div>
         <CreditSection credits={credits} />
@@ -171,8 +194,10 @@ const CreditSection = ({ credits }) => {
   return (
     <>
       <div className="mt-16 w-full">
-        <h2 className="mb-5 font-extrabold text-3xl text-white">Casts</h2>
-        <div className="flex flex-wrap gap-10">
+        <h2 className="mb-5 font-extrabold text-3xl text-white text-center lg:text-start">
+          Casts
+        </h2>
+        <div className="flex flex-wrap lg:gap-10 gap-3">
           {cast.slice(0, visibleCards).map((cast, index) => {
             return (
               <div
