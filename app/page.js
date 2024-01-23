@@ -304,26 +304,45 @@ const CarouselComp = ({
 
 const DummyHomePage = () => {
   return (
-    <div className="flex flex-col justify-center items-center mx-auto pt-7">
-      <div className="w-[300px] h-[300px] bg-gray-300 rounded-xl lg:h-[650px] lg:w-[1200px]"></div>
-      <h2 className="bg-gray-300 mt-10 rounded-xl w-56 h-6"></h2>
-      <div className="mt-6 flex space-x-7 justify-evenly">
+    <>
+      {/* For mobile */}
+      <div className="pt-6 flex space-x-7 justify-evenly lg:hidden">
         <div className="flex space-x-2">
-          <div className="bg-gray-300 rounded-full h-6 w-6"></div>
-          <div className="bg-gray-300 h-6 w-14 rounded-xl"></div>
-          <div className="bg-gray-300 rounded-full h-6 w-6"></div>
+          <div className="bg-gray-300 rounded-full lg:h-6 lg:w-6 w-3 h-3"></div>
+          <div className="bg-gray-300 lg:h-6 lg:w-14 h-3 w-6 rounded-xl"></div>
+          <div className="bg-gray-300 rounded-full lg:h-6 lg:w-6 w-3 h-3"></div>
         </div>
         <div className="flex space-x-2">
-          <div className="bg-gray-300 rounded-full h-6 w-6"></div>
-          <div className="bg-gray-300 h-6 w-14 rounded-xl"></div>
-          <div className="bg-gray-300 rounded-full h-6 w-6"></div>
+          <div className="bg-gray-300 rounded-full lg:h-6 lg:w-6 w-3 h-3"></div>
+          <div className="bg-gray-300 lg:h-6 lg:w-14 h-3 w-6 rounded-xl"></div>
+          <div className="bg-gray-300 rounded-full lg:h-6 lg:w-6 w-3 h-3"></div>
         </div>
       </div>
-      <div className="flex flex-col lg:flex-row mt-14 lg:mt-24 justify-center lg:justify-start items-center lg:w-[900px]">
-        <h2 className="bg-gray-300 rounded-xl w-56 h-6 mb-6 lg:mb-0 lg:w-64 lg:mr-56"></h2>
-        <button className="bg-gray-300 rounded-lg h-12 w-3/4 mb-3 lg:mb-0 lg:w-44 lg:mr-4"></button>
-        <button className="bg-gray-300 rounded-lg h-12 w-3/4 lg:w-44"></button>
+
+      <div className="flex flex-col justify-center items-center mx-auto pt-7">
+        <div className="w-[250px] h-[300px] bg-gray-300 rounded-xl lg:h-[650px] lg:w-[1200px]"></div>
+        <h2 className="bg-gray-300 mt-10 rounded-xl w-56 h-6 hidden lg:flex"></h2>
+
+        {/* For large screens */}
+        <div className="mt-6 space-x-7 justify-evenly hidden lg:flex">
+          <div className="flex space-x-2">
+            <div className="bg-gray-300 rounded-full h-6 w-6"></div>
+            <div className="bg-gray-300 h-6 w-14 rounded-xl"></div>
+            <div className="bg-gray-300 rounded-full h-6 w-6"></div>
+          </div>
+          <div className="flex space-x-2">
+            <div className="bg-gray-300 rounded-full h-6 w-6"></div>
+            <div className="bg-gray-300 h-6 w-14 rounded-xl"></div>
+            <div className="bg-gray-300 rounded-full h-6 w-6"></div>
+          </div>
+        </div>
+
+        <div className="flex flex-col lg:flex-row mt-14 lg:mt-24 justify-center lg:justify-start items-center lg:w-[900px]">
+          <h2 className="bg-gray-300 rounded-xl w-40 h-6 mb-6 lg:mb-0 lg:w-64 lg:mr-56"></h2>
+          <button className="bg-gray-300 rounded-lg lg:h-12 h-10 w-2/4 mb-3 lg:mb-0 lg:w-44 lg:mr-4"></button>
+          <button className="bg-gray-300 rounded-lg lg:h-12 h-10 w-2/4 lg:w-44"></button>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
