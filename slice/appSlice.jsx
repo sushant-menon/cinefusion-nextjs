@@ -4,6 +4,7 @@ export const appSlice = createSlice({
   name: "app",
   initialState: {
     isSidebarOpen: true,
+    isSignUpFormOpen: false,
   },
 
   reducers: {
@@ -13,8 +14,12 @@ export const appSlice = createSlice({
     closeSidebar: state => {
       state.isSidebarOpen = false;
     },
+    toggleSignUpForm: state => {
+      state.isSignUpFormOpen = !state.isSignUpFormOpen;
+    },
   },
 });
 
-export const { toggleSidebar, closeSidebar } = appSlice.actions;
+export const { toggleSidebar, closeSidebar, toggleSignUpForm } =
+  appSlice.actions;
 export default appSlice.reducer;

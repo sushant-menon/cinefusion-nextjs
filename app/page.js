@@ -172,7 +172,7 @@ export default function Home() {
         <div className="absolute top-0 left-0 w-full h-full bg-black opacity-75"></div>
         <div>
           <Image
-            className="w-screen h-screen object-cover"
+            className="w-screen h-screen object-cover blur-lg"
             width={800}
             height={800}
             src="https://assets.nflxext.com/ffe/siteui/vlv3/563192ea-ac0e-4906-a865-ba9899ffafad/6b2842d1-2339-4f08-84f6-148e9fcbe01b/IN-en-20231218-popsignuptwoweeks-perspective_alpha_website_large.jpg"
@@ -282,11 +282,6 @@ const CarouselComp = ({
   return (
     <>
       <div className={`text-center ${active ? "block" : "hidden"}`}>
-        {/* <img
-          className="w-full h-[700px] object-fill saturate-150 md:h-[650px] rounded-xl"
-          src={`https://image.tmdb.org/t/p/w1280${poster_path}`}
-          alt={title}
-        /> */}
         <Image
           className="w-full h-[300px] object-fill saturate-150 lg:h-[650px] rounded-xl"
           src={`https://image.tmdb.org/t/p/w1280${poster_path}`}

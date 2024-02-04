@@ -20,4 +20,8 @@ export const SidebarMenu = [
     title: "Trial",
     path: "/trial",
   },
+  {
+    title: "Login",
+    path: "/login",
+  },
 ];

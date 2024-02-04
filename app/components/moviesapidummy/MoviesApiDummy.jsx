@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 
 const useApiData = (url, shouldFetch = true) => {
-  // Add a parameter for conditional fetching
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -24,11 +23,9 @@ const useApiData = (url, shouldFetch = true) => {
     };
 
     if (shouldFetch) {
-      // Only fetch if shouldFetch is true
       fetchData();
     }
-  }, [url, shouldFetch]); // Add shouldFetch to the dependency array
-
+  }, [url, shouldFetch]);
   return { data, loading, error };
 };
 
