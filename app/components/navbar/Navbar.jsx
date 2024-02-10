@@ -5,6 +5,9 @@ import { toggleSidebar } from "@/slice/appSlice";
 import { useDispatch } from "react-redux";
 import Link from "next/link";
 import Login from "../login/Login";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../utils/Firebase";
+import { addUsers, removeUsers } from "@/slice/userSlice";
 
 const Navbar = ({ toggle }) => {
   const [searchValue, setSearchValue] = useState("");
@@ -26,11 +29,17 @@ const Navbar = ({ toggle }) => {
     setShowLogin(!showLogin);
   };
 
+  // for user authentication
+
   useEffect(() => {
     onAuthStateChanged(auth, user => {
       if (user) {
-        const uid = user.uid;
+        const { uid, email, displayName } = user;
+        dispatch(
+          addUsers({ uid: uid, email: email, displayName: displayName })
+        );
       } else {
+        dispatch(removeUsers());
       }
     });
   }, []);
