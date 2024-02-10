@@ -6,7 +6,6 @@ export const appSlice = createSlice({
     isSidebarOpen: true,
     isSignUpFormOpen: false,
   },
-
   reducers: {
     toggleSidebar: state => {
       state.isSidebarOpen = !state.isSidebarOpen;
@@ -22,4 +21,5 @@ export const appSlice = createSlice({
 
 export const { toggleSidebar, closeSidebar, toggleSignUpForm } =
   appSlice.actions;
+
 export default appSlice.reducer;

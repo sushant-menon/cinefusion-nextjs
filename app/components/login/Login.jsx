@@ -2,6 +2,11 @@ import { closeSidebar } from "@/slice/appSlice";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { checkValidData } from "../utils/Validate";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../utils/Firebase";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
@@ -27,6 +32,25 @@ const Login = () => {
       null
     );
     setErrorMessage(message);
+    if (message) return;
+    if (isSignInForm) {
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then(userCredential => {
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch(error => {
+          // const errorCode = error.code;
+          const errorCode = "User Invalid :";
+          const errorMessage = "Wrong credentials, check email or password";
+          // const errorMessage = error.message;
+          setErrorMessage(`${errorCode} ${errorMessage}`);
+        });
+    }
   };
 
   const handleSignUpClick = () => {
@@ -36,6 +60,22 @@ const Login = () => {
       name.current.value
     );
     setErrorMessage(message);
+    if (message) return;
+    if (!isSignInForm) {
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then(userCredential => {
+          const user = userCredential.user;
+        })
+        .catch(error => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(`${errorCode} ${errorMessage}`);
+        });
+    }
   };
 
   return (

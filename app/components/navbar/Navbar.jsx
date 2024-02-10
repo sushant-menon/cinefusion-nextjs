@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { toggleSidebar } from "@/slice/appSlice";
 import { useDispatch } from "react-redux";
@@ -25,6 +25,15 @@ const Navbar = ({ toggle }) => {
   const handleSignUpButton = () => {
     setShowLogin(!showLogin);
   };
+
+  useEffect(() => {
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        const uid = user.uid;
+      } else {
+      }
+    });
+  }, []);
 
   return (
     <>

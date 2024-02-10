@@ -24,8 +24,8 @@ export default function RootLayout({ children }) {
           <Theme className="">
             <div>
               {/* {toggle && (
-              <div className="bg-gray-400 h-screen w-full fixed z-30 opacity-80"></div>
-            )} */}
+                <div className="bg-gray-400 h-screen w-full fixed z-30 opacity-80"></div>
+              )} */}
               <Navbar />
 
               <div className="absolute z-30 opacity-80">
