@@ -7,10 +7,12 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../utils/Firebase";
+import { useRouter } from "next/router";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
+  const router = useRouter();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,6 +26,8 @@ const Login = () => {
   const toggleSignUpForm = () => {
     setIsSignInForm(!isSignInForm);
   };
+
+  // Sign in validation
 
   const handleSignInClick = () => {
     const message = checkValidData(
@@ -52,6 +56,8 @@ const Login = () => {
         });
     }
   };
+
+  // Sign up validation
 
   const handleSignUpClick = () => {
     const message = checkValidData(
