@@ -7,12 +7,12 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../utils/Firebase";
-// import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-  // const router = useRouter();
+  const router = useRouter();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -46,6 +46,7 @@ const Login = () => {
         .then(userCredential => {
           const user = userCredential.user;
           console.log(user);
+          router.push("/tvshows");
         })
         .catch(error => {
           // const errorCode = error.code;
