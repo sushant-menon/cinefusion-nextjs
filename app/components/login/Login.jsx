@@ -7,12 +7,12 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../utils/Firebase";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-  const router = useRouter();
+  // const router = useRouter();
   const dispatch = useDispatch();
 
   useEffect(() => {
