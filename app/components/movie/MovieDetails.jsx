@@ -20,6 +20,7 @@ const MovieDetails = ({ data }) => {
   const statusUpdate = status;
 
   const [showTrailer, setShowTrailer] = useState(false);
+  const [genresInAPage, setGenresInAPage] = useState(2);
 
   const dispatch = useDispatch();
 
@@ -44,7 +45,7 @@ const MovieDetails = ({ data }) => {
 
       return (
         <iframe
-          className="lg:w-[1450px] lg:h-[788px] lg:transform lg:-translate-x-8 lg:translate-y-48 w-96 h-52 rounded-md lg:rounded-none"
+          className="absolute lg:w-[1450px] lg:h-[788px] lg:transform lg:-translate-y-[550px] lg:-translate-x-8 w-full h-[216px] transform -translate-y-[140px] rounded-md xl:rounded-none"
           src={`https://www.youtube.com/embed/${youtubeVideoId}`}
           title="YouTube video player"
           frameBorder="0"
@@ -54,10 +55,10 @@ const MovieDetails = ({ data }) => {
       );
     } else {
       const key = data.videos.results[0].key;
-      // change the width and height and adjust the video container
+
       return (
         <iframe
-          className="lg:w-[1450px] lg:h-[788px] lg:transform lg:translate-y-48 lg:-translate-x-8 w-96 h-52 transform -translate-y-[220px] rounded-md -translate-x-1"
+          className="absolute lg:w-[1450px] lg:h-[788px] lg:transform lg:-translate-y-[550px] lg:-translate-x-8 w-full h-[216px] transform -translate-y-[138px] rounded-md xl:rounded-none"
           src={`https://www.youtube.com/embed/${key}`}
           title="YouTube video player"
           frameBorder="0"
@@ -90,9 +91,35 @@ const MovieDetails = ({ data }) => {
             {title}
           </h2>
           {showTrailer ? renderMovieTrailer() : null}
+
+          {/* For mobile screens */}
+          {showTrailer ? (
+            <button
+              onClick={handleCancel}
+              className="right-0 top-0 px-2 py-2 bg-red-600 rounded-full font-bold text-white cursor-pointer lg:flex items-center flex xl:hidden"
+            >
+              <Image src="/x.svg" alt="x-image" width={20} height={30} />
+            </button>
+          ) : (
+            <button
+              onClick={handleWatchTrailer}
+              className="lg:border border-green-200 lg:px-5 lg:w-64 h-2 py-5 px-3 lg:py-7 p-2 rounded-2xl bg-red-600 hover:bg-red-500 text-white lg:mt-8 font-extrabold lg:text-xl flex xl:hidden items-center lg:mr-0"
+            >
+              <Image
+                className="mr-0 lg:mr-4"
+                src="/youtube.svg"
+                width={25}
+                height={37}
+                alt="yt-img"
+              />
+              <span className="hidden lg:flex"> Watch Trailer</span>
+            </button>
+          )}
+
+          {/* for large screens */}
           <button
             onClick={handleWatchTrailer}
-            className="lg:border border-green-200 lg:px-5 lg:w-64 h-2 py-5 px-3 lg:py-7 p-2 rounded-2xl bg-red-600 hover:bg-red-500 text-white lg:mt-8 font-extrabold lg:text-xl flex items-center lg:mr-0"
+            className="lg:border border-green-200 lg:px-5 lg:w-64 h-2 py-5 px-3 lg:py-7 p-2 rounded-2xl bg-red-600 hover:bg-red-500 text-white lg:mt-8 font-extrabold lg:text-xl hidden xl:flex items-center lg:mr-0"
           >
             <Image
               className="mr-0 lg:mr-4"
@@ -109,14 +136,28 @@ const MovieDetails = ({ data }) => {
             onClick={handleCancel}
             className="absolute hidden right-0 top-0 px-2 py-2 bg-red-600 rounded-full font-bold text-white cursor-pointer lg:flex items-center"
           >
-            {/* <img src="/x.svg" /> */}
             <Image src="/x.svg" alt="x-image" width={20} height={30} />
           </button>
         ) : null}
       </div>
       <div className="flex justify-between items-center lg:w-[1450px] w-full">
         <div className="flex mt-10 items-center">
-          <span className="flex gap-2">
+          {/* Genres mobile screen  */}
+          <span className="flex gap-2 xl:hidden">
+            {genres.slice(0, genresInAPage).map(genre => {
+              return (
+                <p
+                  className="border border-green-400 lg:px-4 lg:py-2 px-2 py-1 text-white text-sm lg:text-lg bg-green-900 rounded-full"
+                  key={genre.id}
+                >
+                  {genre.name}
+                </p>
+              );
+            })}
+          </span>
+
+          {/* Genres large screen  */}
+          <span className="hidden xl:flex gap-2">
             {genres.map(genre => {
               return (
                 <p
