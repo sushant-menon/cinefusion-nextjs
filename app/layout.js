@@ -34,8 +34,8 @@ export default function RootLayout({ children }) {
             </div>
             <main>
               <div className="bg-gray-900">{children}</div>
+              <Footer />
             </main>
-            <Footer />
           </Theme>
         </body>
       </Provider>

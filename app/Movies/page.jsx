@@ -4,7 +4,7 @@ import React from "react";
 
 export default function Page() {
   return (
-    <div className="h-[150vh] overflow-auto overflow-x-hidden mx-0 pt-8 flex flex-wrap justify-around pl-2">
+    <div className="h-full overflow-auto overflow-x-hidden mx-0 pt-8 flex flex-wrap justify-around pl-2">
       <MovieList />
     </div>
   );

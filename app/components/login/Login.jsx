@@ -5,9 +5,11 @@ import { checkValidData } from "../utils/Validate";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/Firebase";
 import { useRouter } from "next/navigation";
+import { addNames } from "@/slice/userSlice";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
@@ -45,6 +47,17 @@ const Login = () => {
       )
         .then(userCredential => {
           const user = userCredential.user;
+          updateProfile(user, {
+            displayName: "name.current.value",
+          })
+            .then(() => {
+              // Profile updated!
+              // ...
+            })
+            .catch(error => {
+              setErrorMessage(error.message);
+            });
+
           console.log(user);
           router.push("/tvshows");
         })
@@ -76,6 +89,8 @@ const Login = () => {
       )
         .then(userCredential => {
           const user = userCredential.user;
+          // dispatch(addNames(name.current.value));
+          router.push("/populartvshows");
         })
         .catch(error => {
           const errorCode = error.code;

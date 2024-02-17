@@ -336,6 +336,7 @@ const DummyHomePage = () => {
           <h2 className="bg-gray-300 rounded-xl w-40 h-6 mb-6 lg:mb-0 lg:w-64 lg:mr-56"></h2>
           <button className="bg-gray-300 rounded-lg lg:h-12 h-10 w-2/4 mb-3 lg:mb-0 lg:w-44 lg:mr-4"></button>
           <button className="bg-gray-300 rounded-lg lg:h-12 h-10 w-2/4 lg:w-44"></button>
+          <div className="mb-10"></div>
         </div>
       </div>
     </>

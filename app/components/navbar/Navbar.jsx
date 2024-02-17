@@ -2,17 +2,23 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { toggleSidebar } from "@/slice/appSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import Login from "../login/Login";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../utils/Firebase";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { addUsers, removeUsers } from "@/slice/userSlice";
+import { useRouter } from "next/navigation";
+import { auth } from "../utils/Firebase";
 
 const Navbar = ({ toggle }) => {
   const [searchValue, setSearchValue] = useState("");
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
+  const router = useRouter();
+  const user = useSelector(store => store.user);
+  const names = useSelector(state => state.user?.names || []);
+
+  // console.log(names);
 
   const dispatch = useDispatch();
   const toggleSidebarMenu = () => {
@@ -27,6 +33,16 @@ const Navbar = ({ toggle }) => {
 
   const handleSignUpButton = () => {
     setShowLogin(!showLogin);
+  };
+
+  const handleSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        router.push("/");
+      })
+      .catch(error => {
+        console.error("Signout error:", error);
+      });
   };
 
   // for user authentication
@@ -77,6 +93,7 @@ const Navbar = ({ toggle }) => {
           }`}
         >
           {/* Search Button */}
+
           {/* <form onSubmit={handleSubmit} className="flex items-center">
             {showSearchBar && (
               <input
@@ -109,12 +126,22 @@ const Navbar = ({ toggle }) => {
             )}
           </form> */}
 
-          <button
-            onClick={handleSignUpButton}
-            className="border border-black bg-gray-800 text-white/60 px-2 py-2 font-bold hover:bg-red-600 hover:text-white rounded-lg"
-          >
-            Sign Up
-          </button>
+          {!user ? (
+            <button
+              onClick={handleSignUpButton}
+              className="border border-black bg-gray-800 text-white/60 px-2 py-2 font-bold hover:bg-red-600 hover:text-white rounded-lg"
+            >
+              Sign Up
+            </button>
+          ) : (
+            <button
+              className="border border-black bg-gray-800 text-white/60 px-2 py-2 font-bold hover:bg-green-600 hover:text-white rounded-lg"
+              onClick={handleSignOut}
+            >
+              Sign Out
+            </button>
+          )}
+
           {showLogin && <Login />}
         </div>
       </div>
