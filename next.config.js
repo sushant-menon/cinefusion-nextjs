@@ -7,6 +7,7 @@ const nextConfig = {
       "cdn-icons-png.flaticon.com",
       "image.tmdb.org",
       "assets.nflxext.com",
+      "w7.pngwing.com",
     ],
   },
 };

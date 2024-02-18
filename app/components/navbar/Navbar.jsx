@@ -10,10 +10,11 @@ import { addUsers, removeUsers } from "@/slice/userSlice";
 import { useRouter } from "next/navigation";
 import { auth } from "../utils/Firebase";
 
-const Navbar = ({ toggle }) => {
+const Navbar = ({ toggleNavbar }) => {
   const [searchValue, setSearchValue] = useState("");
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
+  const [isNavbarOpen, setIsNavbarOpen] = useState(false);
   const router = useRouter();
   const user = useSelector(store => store.user);
   const names = useSelector(state => state.user?.names || []);
@@ -23,6 +24,8 @@ const Navbar = ({ toggle }) => {
   const dispatch = useDispatch();
   const toggleSidebarMenu = () => {
     dispatch(toggleSidebar());
+    setIsNavbarOpen(!isNavbarOpen);
+    toggleNavbar(!isNavbarOpen);
   };
 
   const handleSubmit = e => {
@@ -68,13 +71,23 @@ const Navbar = ({ toggle }) => {
       >
         <div className="lg:flex lg:items-center flex">
           <button onClick={() => toggleSidebarMenu()}>
-            <Image
-              className="w-full"
-              src="https://cdn.iconscout.com/icon/free/png-256/free-hamburger-menu-462145.png?f=webp"
-              alt=""
-              width={34}
-              height={20}
-            />
+            {isNavbarOpen ? (
+              <Image
+                className="w-12 mix-blend-multiply"
+                src="x (2).svg"
+                alt="cross-img"
+                width={34}
+                height={20}
+              />
+            ) : (
+              <Image
+                className="w-full"
+                src="https://cdn.iconscout.com/icon/free/png-256/free-hamburger-menu-462145.png?f=webp"
+                alt="hamburger-img"
+                width={34}
+                height={20}
+              />
+            )}
           </button>
           <Link href="/">
             <div className="text-center">

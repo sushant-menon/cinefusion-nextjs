@@ -8,6 +8,8 @@ import store from "@/store";
 import "@radix-ui/themes/styles.css";
 import { Theme } from "@radix-ui/themes";
 import Footer from "@/app/components/footer/Footer";
+import { toggleSidebar } from "@/slice/appSlice";
+import { useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,21 +19,27 @@ const inter = Inter({ subsets: ["latin"] });
 // };
 
 export default function RootLayout({ children }) {
+  const [isNavbarOpen, setIsNavbarOpen] = useState(false);
+
+  const toggleNavbar = isOpen => {
+    setIsNavbarOpen(isOpen);
+  };
+
   return (
     <html lang="en">
       <Provider store={store}>
         <body className={inter.className}>
-          <Theme className="">
+          <Theme>
             <div>
-              {/* {toggle && (
-                <div className="bg-gray-400 h-screen w-full fixed z-30 opacity-80"></div>
-              )} */}
-              <Navbar />
-
-              <div className="absolute z-30 opacity-80">
+              <Navbar toggleNavbar={toggleNavbar} />
+              {isNavbarOpen && (
+                <div className="bg-gray-400 h-full w-full absolute z-20 opacity-60"></div>
+              )}
+              <div className="absolute z-30 opacity-90">
                 <Sidebar />
               </div>
             </div>
+
             <main>
               <div className="bg-gray-900">{children}</div>
               <Footer />
