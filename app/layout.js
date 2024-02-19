@@ -39,7 +39,6 @@ export default function RootLayout({ children }) {
                 <Sidebar />
               </div>
             </div>
-
             <main>
               <div className="bg-gray-900">{children}</div>
               <Footer />
