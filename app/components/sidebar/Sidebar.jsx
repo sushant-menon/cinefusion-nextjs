@@ -17,7 +17,7 @@ const Sidebar = ({ toggle, setToggle }) => {
 
   return (
     <>
-      <div className="flex flex-col items-center bg-gray-800 h-screen w-[100px] lg:w-[200px] min-h-screen justify-evenly">
+      <div className="flex flex-col items-center bg-gray-800 h-screen w-[100px] lg:w-[200px] min-h-screen xl:justify-evenly space-y-10 xl:space-y-0 pt-10 xl:pt-0">
         {SidebarMenu.map((item, index) => {
           return (
             <ul
@@ -25,7 +25,7 @@ const Sidebar = ({ toggle, setToggle }) => {
               key={index}
             >
               <Link
-                className="text-white text-xl"
+                className="text-white xl:text-xl"
                 href={item.path}
                 onClick={handleLinkClick}
               >

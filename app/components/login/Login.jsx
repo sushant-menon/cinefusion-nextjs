@@ -90,7 +90,7 @@ const Login = () => {
         .then(userCredential => {
           const user = userCredential.user;
           // dispatch(addNames(name.current.value));
-          router.push("/populartvshows");
+          router.push("/");
         })
         .catch(error => {
           const errorCode = error.code;
@@ -101,7 +101,7 @@ const Login = () => {
   };
 
   return (
-    <div className="w-1/6">
+    <div className="xl:w-1/6">
       {isSignInForm ? (
         <>
           <p className="text-xl mb-3 font-bold">Sign In</p>

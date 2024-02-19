@@ -3,12 +3,11 @@ import Navbar from "@/app/components/navbar/Navbar";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Sidebar from "@/app/components/sidebar/Sidebar";
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import store from "@/store";
 import "@radix-ui/themes/styles.css";
 import { Theme } from "@radix-ui/themes";
 import Footer from "@/app/components/footer/Footer";
-import { toggleSidebar } from "@/slice/appSlice";
 import { useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
