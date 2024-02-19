@@ -17,10 +17,13 @@ const Sidebar = ({ toggle, setToggle }) => {
 
   return (
     <>
-      <div className="flex flex-col items-start bg-gray-800 h-screen w-[100px] lg:w-[200px] min-h-screen justify-evenly">
+      <div className="flex flex-col items-center bg-gray-800 h-screen w-[100px] lg:w-[200px] min-h-screen justify-evenly">
         {SidebarMenu.map((item, index) => {
           return (
-            <li key={index}>
+            <ul
+              className="hover:bg-red-600 duration-500 w-full text-center py-2 px-3 rounded-lg"
+              key={index}
+            >
               <Link
                 className="text-white text-xl"
                 href={item.path}
@@ -28,7 +31,7 @@ const Sidebar = ({ toggle, setToggle }) => {
               >
                 {item.title}
               </Link>
-            </li>
+            </ul>
           );
         })}
       </div>
